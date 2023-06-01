@@ -53,7 +53,7 @@ public static class ResultExtensions
     /// Fences the result, with an optional language applied
     /// </summary>
     /// <param name="result">result to fence</param>
-    /// <param name="language">optional language to designated the fenced result as</param>
+    /// <param name="language">optional language to designate the fenced result as</param>
     /// <typeparam name="T">some result T</typeparam>
     /// <returns>fenced result of calling ToString on T</returns>
     [Pure]
