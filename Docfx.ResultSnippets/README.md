@@ -4,10 +4,10 @@
 
 <!-- markdownlint-enable MD013 -->
 
-[Getting Started](https://bmazzarol.github.io/docfx.result-snippets/articles/getting-started.html)
-[Documentation](https://bmazzarol.github.io/docfx.result-snippets)
-
 [![Nuget](https://img.shields.io/nuget/v/Docfx.ResultSnippets)](https://www.nuget.org/packages/Docfx.ResultSnippets/)
+
+* [Getting Started](https://bmazzarol.github.io/docfx.result-snippets/articles/getting-started.html)
+* [Documentation](https://bmazzarol.github.io/docfx.result-snippets)
 
 ## Features
 
