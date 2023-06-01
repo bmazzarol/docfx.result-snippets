@@ -94,4 +94,4 @@ create an issue.
 
 ## Attributions
 
-[Fire icons created by juicy_fish](https://www.flaticon.com/free-icons/test-tubes)
+[Icons created by juicy_fish](https://www.flaticon.com/free-icons)
