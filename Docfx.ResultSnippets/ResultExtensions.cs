@@ -20,7 +20,7 @@ public static class ResultExtensions
     /// </summary>
     /// <remarks>
     /// <para>The generated file name format is `{sourceFilePath}.{memberName}.({partName}.).{extension}`</para>
-    /// <para>This is under the `folder`, __examples__ by default relative to the executing code in `sourceFilePath`</para>
+    /// <para>This is saved under the `folder`, __examples__ by default relative to the executing code in `sourceFilePath`</para>
     /// </remarks>
     /// <param name="result">some result to save</param>
     /// <param name="folder">folder to save it under, default is `__examples__`</param>
@@ -28,7 +28,7 @@ public static class ResultExtensions
     /// <param name="partName">optional part name</param>
     /// <param name="sourceFilePath">source file path of the calling code</param>
     /// <param name="memberName">member name of the calling code</param>
-    /// <typeparam name="T">some T to 'ToString' the result of which is saved</typeparam>
+    /// <typeparam name="T">some T to `ToString` and save</typeparam>
     public static void SaveResults<T>(
         this T result,
         string folder = "__examples__",
