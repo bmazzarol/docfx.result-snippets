@@ -4,7 +4,19 @@
 
 <!-- markdownlint-enable MD013 -->
 
+[Getting Started](https://bmazzarol.github.io/docfx.result-snippets/articles/getting-started.html)
+[Documentation](https://bmazzarol.github.io/docfx.result-snippets)
+
 [![Nuget](https://img.shields.io/nuget/v/Docfx.ResultSnippets)](https://www.nuget.org/packages/Docfx.ResultSnippets/)
+
+## Features
+
+* Export results
+  to [tables](https://bmazzarol.github.io/docfx.result-snippets/articles/table-results.html)
+* Convert `Types`
+  to [class diagrams](https://bmazzarol.github.io/docfx.result-snippets/articles/class-diagram-results.html)
+* Export results
+  to [any format supported by markdig](https://bmazzarol.github.io/docfx.result-snippets/articles/chart-results.html)
 
 ```c#
 using Docfx.ResultSnippets;
