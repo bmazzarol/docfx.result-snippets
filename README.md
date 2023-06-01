@@ -5,6 +5,9 @@
 
 # Docfx Result Snippets
 
+[:running: Getting Started](https://bmazzarol.github.io/docfx.result-snippets/articles/getting-started.html)
+[:books: Documentation](https://bmazzarol.github.io/docfx.result-snippets)
+
 [![Nuget](https://img.shields.io/nuget/v/docfx.result-snippets)](https://www.nuget.org/packages/docfx.result-snippets/)
 [![Coverage Status](https://coveralls.io/repos/github/bmazzarol/docfx.result-snippets/badge.svg?branch=main)](https://coveralls.io/github/bmazzarol/docfx.result-snippets?branch=main)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bmazzarol_docfx.result-snippets&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=bmazzarol_docfx.result-snippets)
@@ -15,6 +18,15 @@
 Include the executed results **_from code_** in your Docfx documentation!
 
 </div>
+
+## Features
+
+* Export results
+  to [tables](https://bmazzarol.github.io/docfx.result-snippets/articles/table-results.html)
+* Convert `Types`
+  to [class diagrams](https://bmazzarol.github.io/docfx.result-snippets/articles/class-diagram-results.html)
+* Export results
+  to [any format supported by markdig](https://bmazzarol.github.io/docfx.result-snippets/articles/chart-results.html)
 
 ```c#
 using Docfx.ResultSnippets;
