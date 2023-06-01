@@ -5,8 +5,8 @@
 
 # Docfx Result Snippets
 
-[:running: Getting Started](https://bmazzarol.github.io/docfx.result-snippets/articles/getting-started.html)
-[:books: Documentation](https://bmazzarol.github.io/docfx.result-snippets)
+[:running: **_Getting Started_**](https://bmazzarol.github.io/docfx.result-snippets/articles/getting-started.html)
+[:books: **_Documentation_**](https://bmazzarol.github.io/docfx.result-snippets)
 
 [![Nuget](https://img.shields.io/nuget/v/docfx.result-snippets)](https://www.nuget.org/packages/docfx.result-snippets/)
 [![Coverage Status](https://coveralls.io/repos/github/bmazzarol/docfx.result-snippets/badge.svg?branch=main)](https://coveralls.io/github/bmazzarol/docfx.result-snippets?branch=main)
