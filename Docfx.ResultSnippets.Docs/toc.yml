@@ -1,6 +1,6 @@
 items:
   - name: About
-    href: /
+    href: index.md
   - name: Getting Started
     href: articles/getting-started.md
   - name: Save Results
