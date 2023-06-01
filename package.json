@@ -1,5 +1,5 @@
 {
-  "name": "docfx-result-snippets",
+  "name": "docfx.result-snippets",
   "version": "1.0.0",
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",

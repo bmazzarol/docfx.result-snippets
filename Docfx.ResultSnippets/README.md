@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD013 -->
 
-# ![Docfx.ResultSnippets](https://raw.githubusercontent.com/bmazzarol/docfx-result-snippets/main/downloadable-small-logo.png) Docfx Result Snippets
+# ![Docfx.ResultSnippets](https://raw.githubusercontent.com/bmazzarol/docfx.result-snippets/main/downloadable-small-logo.png) Docfx Result Snippets
 
 <!-- markdownlint-enable MD013 -->
 
