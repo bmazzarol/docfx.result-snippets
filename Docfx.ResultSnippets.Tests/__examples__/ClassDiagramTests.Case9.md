@@ -1,0 +1,66 @@
+```mermaid
+classDiagram
+`MemberModel` "*"  <--  "1" `ClassModel` : Members
+`MemberVisibility` "1"  <--  "1" `MemberModel` : Visibility
+`ParameterModel` "*"  <--  "1" `MemberModel` : Parameters
+`RelationshipType` "1"  <--  "1" `RelationshipModel` : Type
+`ClassModifier` "1"  <..  "1" `ClassModel` : Modifier
+`MemberModifier` "1"  <..  "1" `MemberModel` : Modifier
+`CardinalityType` "1"  <..  "1" `RelationshipModel` : Cardinality
+class `CardinalityType`
+<<enumeration>> `CardinalityType`
+`CardinalityType`: ManyToMany
+`CardinalityType`: ManyToOne
+`CardinalityType`: OneToMany
+`CardinalityType`: OneToOne
+class `ClassModel`
+`ClassModel` : +IEnumerable&ltMemberModel> Members
+`ClassModel` : +ClassModifier? Modifier
+`ClassModel` : +string Name
+`ClassModel` : +string Notes
+`ClassModel` : +IEnumerable&ltstring> Values
+`ClassModel` : +GetType() Type
+class `ClassModifier`
+<<enumeration>> `ClassModifier`
+`ClassModifier`: Abstract
+`ClassModifier`: Interface
+`ClassModifier`: Struct
+class `MemberModel`
+`MemberModel` : +MemberModifier? Modifier
+`MemberModel` : +string Name
+`MemberModel` : +IEnumerable&ltParameterModel> Parameters
+`MemberModel` : +string TypeName
+`MemberModel` : +MemberVisibility Visibility
+`MemberModel` : +GetType() Type
+class `MemberModifier`
+<<enumeration>> `MemberModifier`
+`MemberModifier`: Abstract
+`MemberModifier`: Static
+class `MemberVisibility`
+<<enumeration>> `MemberVisibility`
+`MemberVisibility`: Internal
+`MemberVisibility`: Private
+`MemberVisibility`: Protected
+`MemberVisibility`: Public
+class `ParameterModel`
+`ParameterModel` : +string Name
+`ParameterModel` : +string TypeName
+`ParameterModel` : +GetType() Type
+class `RelationshipModel`
+`RelationshipModel` : +CardinalityType? Cardinality
+`RelationshipModel` : +string FromType
+`RelationshipModel` : +string Label
+`RelationshipModel` : +string ToType
+`RelationshipModel` : +RelationshipType Type
+`RelationshipModel` : +GetType() Type
+class `RelationshipType`
+<<enumeration>> `RelationshipType`
+`RelationshipType`: Aggregation
+`RelationshipType`: Association
+`RelationshipType`: Composition
+`RelationshipType`: Dependency
+`RelationshipType`: Inheritence
+`RelationshipType`: LinkDashed
+`RelationshipType`: LinkSolid
+`RelationshipType`: Realization
+```

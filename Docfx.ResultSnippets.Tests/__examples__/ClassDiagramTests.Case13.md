@@ -1,0 +1,7 @@
+```mermaid
+classDiagram
+`classB` "1"  <--  "1" `classA`
+`classD` "1"  <--  "*" `classC`
+`classF` "*"  <--  "1" `classE`
+`classH` "*"  <--  "*" `classG`
+```

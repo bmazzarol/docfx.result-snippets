@@ -1,0 +1,11 @@
+```mermaid
+classDiagram
+`classB` <|-- `classA`
+`classH` <-- `classG`
+`classD` *-- `classC`
+`classF` o-- `classE`
+`classJ` -- `classI`
+`classL` <.. `classK`
+`classN` <|.. `classM`
+`classP` .. `classO`
+```

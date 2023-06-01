@@ -1,0 +1,56 @@
+﻿```mermaid
+classDiagram
+`ClassDiagramTests.IAnimal` <|-- `ClassDiagramTests.Bird`
+`ClassDiagramTests.IAnimal` <|-- `ClassDiagramTests.Dog`
+`ClassDiagramTests.Bird` <|-- `ClassDiagramTests.Duck`
+`ClassDiagramTests.ILifeform` <|-- `ClassDiagramTests.IAnimal`
+`ClassDiagramTests.Bird` <|-- `ClassDiagramTests.Swan`
+class `ClassDiagramTests.Bird`
+<<abstract>> `ClassDiagramTests.Bird`
+`ClassDiagramTests.Bird` : +Breethe() void
+`ClassDiagramTests.Bird` : +Call() string*
+`ClassDiagramTests.Bird` : +Eat() void
+`ClassDiagramTests.Bird` : +Equals(object obj) bool
+`ClassDiagramTests.Bird` : -Finalize() void
+`ClassDiagramTests.Bird` : +GetHashCode() int
+`ClassDiagramTests.Bird` : +GetType() Type
+`ClassDiagramTests.Bird` : -MemberwiseClone() object
+`ClassDiagramTests.Bird` : +ToString() string
+class `ClassDiagramTests.Dog`
+`ClassDiagramTests.Dog` : +Breethe() void
+`ClassDiagramTests.Dog` : +Call() string
+`ClassDiagramTests.Dog` : +Eat() void
+`ClassDiagramTests.Dog` : +Equals(object obj) bool
+`ClassDiagramTests.Dog` : -Finalize() void
+`ClassDiagramTests.Dog` : +GetHashCode() int
+`ClassDiagramTests.Dog` : +GetType() Type
+`ClassDiagramTests.Dog` : -MemberwiseClone() object
+`ClassDiagramTests.Dog` : +ToString() string
+class `ClassDiagramTests.Duck`
+`ClassDiagramTests.Duck` : +Breethe() void
+`ClassDiagramTests.Duck` : +Call() string
+`ClassDiagramTests.Duck` : +Eat() void
+`ClassDiagramTests.Duck` : +Equals(object obj) bool
+`ClassDiagramTests.Duck` : -Finalize() void
+`ClassDiagramTests.Duck` : +GetHashCode() int
+`ClassDiagramTests.Duck` : +GetType() Type
+`ClassDiagramTests.Duck` : -MemberwiseClone() object
+`ClassDiagramTests.Duck` : +ToString() string
+class `ClassDiagramTests.IAnimal`
+<<interface>> `ClassDiagramTests.IAnimal`
+`ClassDiagramTests.IAnimal` : +Call() string*
+`ClassDiagramTests.IAnimal` : +Eat() void*
+class `ClassDiagramTests.ILifeform`
+<<interface>> `ClassDiagramTests.ILifeform`
+`ClassDiagramTests.ILifeform` : +Breethe() void*
+class `ClassDiagramTests.Swan`
+`ClassDiagramTests.Swan` : +Breethe() void
+`ClassDiagramTests.Swan` : +Call() string
+`ClassDiagramTests.Swan` : +Eat() void
+`ClassDiagramTests.Swan` : +Equals(object obj) bool
+`ClassDiagramTests.Swan` : -Finalize() void
+`ClassDiagramTests.Swan` : +GetHashCode() int
+`ClassDiagramTests.Swan` : +GetType() Type
+`ClassDiagramTests.Swan` : -MemberwiseClone() object
+`ClassDiagramTests.Swan` : +ToString() string
+```

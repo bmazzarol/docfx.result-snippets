@@ -1,0 +1,22 @@
+items:
+  - name: About
+    href: /
+  - name: Getting Started
+    href: articles/getting-started.md
+  - name: Save Results
+    href: articles/save-result.md
+  - name: Result Types
+    items:
+    - name: Fenced Results
+      href: articles/fenced-results.md
+    - name: Tab Result
+      href: articles/tab-result.md
+    - name: Table Result
+      href: articles/table-results.md
+    - name: Class Diagram Result
+      href: articles/class-diagram-results.md
+    - name: Chart Results
+      href: articles/chart-results.md
+  - name: .NET API Docs
+    href: api/toc.yml
+    expanded: true

@@ -1,0 +1,83 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <Authors>Ben Mazzarol</Authors>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <PackageId>Docfx.ResultSnippets</PackageId>
+        <Title>Docfx.ResultSnippets</Title>
+        <Description>Include the executed results from code in your Docfx documentation!</Description>
+        <PackageTags>C#, Docfx, Documentation</PackageTags>
+        <PackageProjectUrl>https://github.com/bmazzarol/Docfx.ResultSnippets</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Copyright>Copyright (c) Ben Mazzarol. All rights reserved.</Copyright>
+        <ProjectGuid>7785ca26-4a1d-42cb-acb1-d8de50fa9646</ProjectGuid>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <IsPackable>True</IsPackable>
+        <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageIcon>downloadable-logo.png</PackageIcon>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <AnalysisMode>Recommended</AnalysisMode>
+        <Nullable>enable</Nullable>
+        <OutputType>library</OutputType>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="\" />
+        <None Include="..\downloadable-logo.png" Pack="true" PackagePath="\" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="AsyncFixer" Version="1.6.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Meziantou.Analyzer" Version="2.0.48">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Roslynator.Analyzers" Version="4.3.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.0.0.68202">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="System.Text.Json" Version="7.0.2" />
+        <PackageReference Include="TypeNameFormatter.Sources" Version="1.1.1">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+    
+    <PropertyGroup>
+        <TypeNameFormatterProjectNodeName>TypeNameFormatter.g.cs</TypeNameFormatterProjectNodeName>
+    </PropertyGroup>
+    
+    <Target Name="husky" BeforeTargets="Restore;CollectPackageReferences" Condition="'$(HUSKY)' != 0">
+        <Exec Command="dotnet tool restore" WorkingDirectory="../" />
+        <Exec Command="dotnet husky install" WorkingDirectory="../" />
+    </Target>
+    
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+            <_Parameter1>Docfx.ResultSnippets.Tests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+</Project>
