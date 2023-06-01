@@ -11,6 +11,9 @@ jobs:
       matrix:
         project-name:
           - Docfx.ResultSnippets
+    permissions:
+      pages: write
+      id-token: write
     steps:
       - uses: actions/checkout@v3
       - name: Setup .NET
@@ -21,11 +24,11 @@ jobs:
             7.0.x
       - name: Build
         run: dotnet build --configuration Release ${{ matrix.project-name }}.Docs/${{ matrix.project-name }}.Docs.csproj
-      - name: Upload Site  
+      - name: Upload Site
         uses: actions/upload-pages-artifact@v1
         with:
           path: ${{ matrix.project-name }}.Docs/_site
-      - name: Publish Site  
+      - name: Publish Site
         uses: actions/upload-pages-artifact@v1
         with:
           path: ${{ matrix.project-name }}.Docs/_site
