@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System.Runtime.InteropServices;
+using FluentAssertions;
 using ScottPlot;
 using Xunit;
 
@@ -9,6 +10,9 @@ public static class GraphExamples
     [Fact(DisplayName = "Stacked Bar Graph Example")]
     public static void Case1()
     {
+        if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            return;
+
         #region StackedBarExample1
 
         var plt = new Plot(600, 400);
@@ -41,6 +45,9 @@ public static class GraphExamples
     [Fact(DisplayName = "Radar Graph Example")]
     public static void Case2()
     {
+        if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            return;
+
         #region RadarExample1
 
         var plt = new Plot(600, 400);
@@ -69,6 +76,9 @@ public static class GraphExamples
     [Fact(DisplayName = "Gauge Graph Example")]
     public static void Case3()
     {
+        if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            return;
+
         #region GaugeExample1
 
         var plt = new Plot(600, 400);
@@ -88,6 +98,9 @@ public static class GraphExamples
     [Fact(DisplayName = "Signal Graph Example")]
     public static void Case4()
     {
+        if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            return;
+
         #region SignalExample1
 
         var plt = new Plot(600, 400);
