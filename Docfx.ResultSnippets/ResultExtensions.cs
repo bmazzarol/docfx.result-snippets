@@ -39,6 +39,8 @@ public static class ResultExtensions
     )
     {
         var data = result?.ToString();
+        if (data == null)
+            return;
         var root = Path.GetDirectoryName(sourceFilePath);
         var name = Path.GetFileNameWithoutExtension(sourceFilePath);
         var path = $"{root}/{folder}";
@@ -74,7 +76,7 @@ public static class ResultExtensions
         results
             .Select(
                 x =>
-                    $"# [{x.Key}](#tab/{x.Key.ToLowerInvariant().Replace(" ", "-")})\n\n{x.Value}\n"
+                    $"# [{x.Key}](#tab/{x.Key.ToLowerInvariant().Replace(' ', '-')})\n\n{x.Value}\n"
             )
             .JoinBy("\n");
 

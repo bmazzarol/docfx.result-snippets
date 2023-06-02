@@ -125,4 +125,19 @@ public static class ResultExtensionsTests
 
         await Verifier.Verify(jsonResult).UseDirectory("__snapshots__");
     }
+
+    [Fact(DisplayName = "null value can have SaveResult called on it")]
+    public static void Case7()
+    {
+        string? value = null;
+        value.SaveResults();
+        true.Should().BeTrue();
+    }
+
+    [Fact(DisplayName = "AsFenced result without a language works")]
+    public static void Case8()
+    {
+        var value = "this is a test".AsFencedResult();
+        value.Should().Be("```\nthis is a test\n```");
+    }
 }
