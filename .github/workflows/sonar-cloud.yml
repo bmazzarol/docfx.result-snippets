@@ -56,6 +56,7 @@ jobs:
           dotnet test `
             --verbosity normal `
             --logger "trx;LogFileName=test-results.trx" `
+            --collect "XPlat Code Coverage" `
             -r "TestResults" `
             -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
           
