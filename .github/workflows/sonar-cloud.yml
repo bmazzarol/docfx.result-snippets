@@ -35,15 +35,15 @@ jobs:
         if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
         shell: pwsh
         run: |
-          New-Item -Path '.\.sonar\scanner' -ItemType Directory
-          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+          New-Item -Path ./.sonar/scanner -ItemType Directory
+          dotnet tool update dotnet-sonarscanner --tool-path ./.sonar/scanner
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: pwsh
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin `
+          ./.sonar/scanner/dotnet-sonarscanner begin `
             /k:"bmazzarol_docfx.result-snippets" `
             /o:"bmazzarol" `
             /d:sonar.login="${{ secrets.SONAR_TOKEN }}" `
@@ -59,5 +59,5 @@ jobs:
             -r "TestResults" `
             -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
           
-          .\.sonar\scanner\dotnet-sonarscanner end `
+          ./.sonar/scanner/dotnet-sonarscanner end `
             /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
