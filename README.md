@@ -9,7 +9,7 @@
 [:books: **_Documentation_**](https://bmazzarol.github.io/docfx.result-snippets)
 
 [![Nuget](https://img.shields.io/nuget/v/Docfx.ResultSnippets)](https://www.nuget.org/packages/docfx.result-snippets/)
-[![Coverage Status](https://coveralls.io/repos/github/bmazzarol/docfx.result-snippets/badge.svg?branch=main)](https://coveralls.io/github/bmazzarol/docfx.result-snippets?branch=main)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=bmazzarol_docfx.result-snippets&metric=coverage)](https://sonarcloud.io/summary/new_code?id=bmazzarol_docfx.result-snippets)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bmazzarol_docfx.result-snippets&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=bmazzarol_docfx.result-snippets)
 [![CD Build](https://github.com/bmazzarol/docfx.result-snippets/actions/workflows/cd-build.yml/badge.svg)](https://github.com/bmazzarol/docfx.result-snippets/actions/workflows/cd-build.yml)
 [![Check Markdown](https://github.com/bmazzarol/docfx.result-snippets/actions/workflows/check-markdown.yml/badge.svg)](https://github.com/bmazzarol/docfx.result-snippets/actions/workflows/check-markdown.yml)
