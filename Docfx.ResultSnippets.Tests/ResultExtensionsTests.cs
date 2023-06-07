@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
@@ -139,5 +140,19 @@ public static class ResultExtensionsTests
     {
         var value = "this is a test".AsFencedResult();
         value.Should().Be("```\nthis is a test\n```");
+    }
+
+    [Fact(DisplayName = "Save results skip files if they already exist")]
+    public static void Case9()
+    {
+        #region SaveResultsExample2
+
+        // some non-deterministic value
+        var result = Guid.NewGuid();
+        // now it can be saved as an example the first time only
+        result.SaveResults(replaceExisting: false);
+        #endregion
+
+        result.Should().NotBeEmpty();
     }
 }

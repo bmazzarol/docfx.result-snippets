@@ -26,6 +26,7 @@ public static class ResultExtensions
     /// <param name="folder">folder to save it under, default is `__examples__`</param>
     /// <param name="extension">extension to use for the example file, default is `md`</param>
     /// <param name="partName">optional part name</param>
+    /// <param name="replaceExisting">flag to indicate that existing example files are to be replaced, default is `true`</param>
     /// <param name="sourceFilePath">source file path of the calling code</param>
     /// <param name="memberName">member name of the calling code</param>
     /// <typeparam name="T">some T to `ToString` and save</typeparam>
@@ -34,6 +35,7 @@ public static class ResultExtensions
         string folder = "__examples__",
         string extension = "md",
         string partName = "",
+        bool replaceExisting = true,
         [CallerFilePath] string sourceFilePath = "",
         [CallerMemberName] string memberName = ""
     )
@@ -44,11 +46,14 @@ public static class ResultExtensions
         var root = Path.GetDirectoryName(sourceFilePath);
         var name = Path.GetFileNameWithoutExtension(sourceFilePath);
         var path = $"{root}/{folder}";
+        var examplePath =
+            $"{path}/{name}.{memberName}{(string.IsNullOrWhiteSpace(partName) ? string.Empty : $".{partName}")}.{extension}";
+
+        if (!replaceExisting && File.Exists(examplePath))
+            return;
+
         Directory.CreateDirectory(path);
-        File.WriteAllText(
-            $"{path}/{name}.{memberName}{(string.IsNullOrWhiteSpace(partName) ? string.Empty : $".{partName}")}.{extension}",
-            data
-        );
+        File.WriteAllText(examplePath, data);
     }
 
     /// <summary>

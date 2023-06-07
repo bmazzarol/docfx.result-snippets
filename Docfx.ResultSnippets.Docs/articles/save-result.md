@@ -14,3 +14,14 @@ the following name format relative to the code that produced the result,
 ```shell
 ./__examples__/{ClassName}.{MemberName}(.{PartName}).md
 ```
+
+## Non Deterministic Examples
+
+If the generated result is non-deterministic
+@Docfx.ResultSnippets.ResultExtensions.SaveResults* can be called with the
+`replaceExisting` flag set to `false`.
+
+This will ensure the file is only created the first time and its only replaced
+once the file is removed.
+
+[!code-csharp[](../../Docfx.ResultSnippets.Tests/ResultExtensionsTests.cs#SaveResultsExample2)]
