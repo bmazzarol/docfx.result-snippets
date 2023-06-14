@@ -56,7 +56,7 @@
         "output": "_site",
         "globalMetadata": {
             "_appName": "Docfx Result Snippets",
-            "_appLogoPath": "images/downloadable-small-logo.png",
+            "_appLogoPath": "images/downloadable-logo.png",
             "_appFaviconPath": "images/favicon.ico",
             "_appFooter": "Created By <a href='https://github.com/bmazzarol' target='blank'>Ben Mazzarol</a>"
         }
