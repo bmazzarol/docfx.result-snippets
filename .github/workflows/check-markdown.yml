@@ -17,4 +17,5 @@ jobs:
     steps:
       - uses: bmazzarol/bmazzarol/.github/actions/check-markdown@main
         with:
-          targetMdFiles: 'Docfx.ResultSnippets*/**/*.md' '!Docfx.ResultSnippets.Tests/**/__examples__/*.md' '!Docfx.ResultSnippets.Docs/**/src/*.md' '*.md' '!LICENSE.md'
+          targetMdFiles: |
+            "Docfx.ResultSnippets*/**/*.md" "!Docfx.ResultSnippets.Tests/**/__examples__/*.md" "!Docfx.ResultSnippets.Docs/**/src/*.md" "*.md" "!LICENSE.md
