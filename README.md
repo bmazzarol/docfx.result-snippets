@@ -13,7 +13,6 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bmazzarol_docfx.result-snippets&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=bmazzarol_docfx.result-snippets)
 [![CD Build](https://github.com/bmazzarol/docfx.result-snippets/actions/workflows/cd-build.yml/badge.svg)](https://github.com/bmazzarol/docfx.result-snippets/actions/workflows/cd-build.yml)
 [![Check Markdown](https://github.com/bmazzarol/docfx.result-snippets/actions/workflows/check-markdown.yml/badge.svg)](https://github.com/bmazzarol/docfx.result-snippets/actions/workflows/check-markdown.yml)
-[![CodeQL](https://github.com/bmazzarol/docfx.result-snippets/actions/workflows/codeql.yml/badge.svg)](https://github.com/bmazzarol/docfx.result-snippets/actions/workflows/codeql.yml)
 
 Include the executed results **_from code_** in your Docfx documentation!
 
