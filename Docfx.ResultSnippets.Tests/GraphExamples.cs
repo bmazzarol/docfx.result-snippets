@@ -33,7 +33,7 @@ public static class GraphExamples
         // adjust axis limits so there is no padding below the bar graph
         plt.SetAxisLimits(yMin: 0);
 
-        var result = plt.GetImageHTML();
+        var result = plt.GetImageHtml();
 
         result.SaveResults();
 
@@ -64,7 +64,7 @@ public static class GraphExamples
         plt.Frameless();
         plt.Grid(enable: false);
 
-        var result = plt.GetImageHTML();
+        var result = plt.GetImageHtml();
 
         result.SaveResults();
 
@@ -86,7 +86,7 @@ public static class GraphExamples
         double[] values = { 100, 80, 65, 45, 20 };
         plt.AddRadialGauge(values);
 
-        var result = plt.GetImageHTML();
+        var result = plt.GetImageHtml();
 
         result.SaveResults();
 
@@ -114,7 +114,7 @@ public static class GraphExamples
 
         plt.Margins(.2, .2); // zoom out slightly to make room for labels
 
-        var result = plt.GetImageHTML();
+        var result = plt.GetImageHtml();
 
         result.SaveResults();
 
