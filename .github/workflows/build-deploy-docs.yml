@@ -13,5 +13,5 @@ jobs:
     steps:
       - uses: bmazzarol/bmazzarol/.github/actions/build-deploy-docs@main
         with:
-          docsProjectPath: Docfx.ResultSnippets
-          csProjFileName: Docfx.ResultSnippets.csproj
+          docsProjectPath: Docfx.ResultSnippets.Docs
+          csProjFileName: Docfx.ResultSnippets.Docs.csproj
