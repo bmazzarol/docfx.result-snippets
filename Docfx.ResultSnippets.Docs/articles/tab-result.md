@@ -1,6 +1,6 @@
 ﻿# Tab Results
 
-Tabs can be created using the @Docfx.ResultSnippets.ResultExtensions.AsTabResult*
+Tabs can be created using the @Docfx.ResultSnippets.ResultExtensions.ToTabResult*
 extension method.
 
 Any type that extends `IEnumerable<KeyValuePair<string,T>>` can be used.

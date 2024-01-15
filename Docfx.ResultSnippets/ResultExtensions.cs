@@ -64,7 +64,7 @@ public static class ResultExtensions
     /// <typeparam name="T">some result T</typeparam>
     /// <returns>fenced result of calling ToString on T</returns>
     [Pure]
-    public static string AsFencedResult<T>(this T result, string? language = null) =>
+    public static string ToFencedResult<T>(this T result, string? language = null) =>
         $"```{language ?? string.Empty}\n{result}\n```";
 
     [Pure]
@@ -77,7 +77,7 @@ public static class ResultExtensions
     /// <param name="results">any type that extends from an enumerable of KeyValuePair</param>
     /// <returns>tabs</returns>
     [Pure]
-    public static string AsTabResult<T>(this IEnumerable<KeyValuePair<string, T>> results) =>
+    public static string ToTabResult<T>(this IEnumerable<KeyValuePair<string, T>> results) =>
         results
             .Select(
                 x =>
@@ -154,7 +154,7 @@ public static class ResultExtensions
     /// <typeparam name="T">some T, if its a class, each field/property becomes a column in the row</typeparam>
     /// <returns>pipe table</returns>
     [Pure]
-    public static string AsTableResult<T>(
+    public static string ToTableResult<T>(
         this IEnumerable<T> result,
         JsonSerializerOptions? options = null,
         string? defaultWhenNull = null
@@ -177,13 +177,13 @@ public static class ResultExtensions
     /// <param name="options">optional json serializer options</param>
     /// <typeparam name="T">some T</typeparam>
     /// <returns>fenced block of JSON</returns>
-    public static string AsJsonResult<T>(this T value, JsonSerializerOptions? options = null)
+    public static string ToJsonResult<T>(this T value, JsonSerializerOptions? options = null)
     {
         var opts = new JsonSerializerOptions(options ?? JsonSerializerOptions.Default)
         {
             WriteIndented = true
         };
         var bytes = JsonSerializer.SerializeToUtf8Bytes(value, opts);
-        return UTF8.GetString(bytes).AsFencedResult("json");
+        return UTF8.GetString(bytes).ToFencedResult("json");
     }
 }

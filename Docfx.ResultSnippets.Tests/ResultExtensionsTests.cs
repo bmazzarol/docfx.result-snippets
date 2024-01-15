@@ -34,7 +34,7 @@ public static class ResultExtensionsTests
 
         // some result that should be fenced
         var result = "sh ./run-script --some-param a";
-        var fencedResult = result.AsFencedResult("shell");
+        var fencedResult = result.ToFencedResult("shell");
 
         #endregion
 
@@ -53,9 +53,9 @@ public static class ResultExtensionsTests
         var result2 = "sh ./run-script --some-other-param b";
         var tabResult = new Dictionary<string, string>
         {
-            ["Result 1"] = result1.AsFencedResult("shell"),
-            ["Result 2"] = result2.AsFencedResult("shell")
-        }.AsTabResult();
+            ["Result 1"] = result1.ToFencedResult("shell"),
+            ["Result 2"] = result2.ToFencedResult("shell")
+        }.ToTabResult();
 
         #endregion
 
@@ -71,7 +71,7 @@ public static class ResultExtensionsTests
 
         // some simple data which will convert to a table
         var data = Enumerable.Range(1, 3).OfType<int?>().Append(null);
-        var tableResult = data.AsTableResult(defaultWhenNull: " - ");
+        var tableResult = data.ToTableResult(defaultWhenNull: " - ");
 
         #endregion
 
@@ -97,7 +97,7 @@ public static class ResultExtensionsTests
                         Nested = new { ChildId = i + 1 }
                     }
             );
-        var tableResult = data.AsTableResult();
+        var tableResult = data.ToTableResult();
 
         #endregion
 
@@ -118,7 +118,7 @@ public static class ResultExtensionsTests
             Id = 1,
             Interests = new[] { new { Id = 1, Name = "Coding" }, new { Id = 2, Name = "Football" } }
         };
-        var jsonResult = data.AsJsonResult();
+        var jsonResult = data.ToJsonResult();
 
         #endregion
 
@@ -138,7 +138,7 @@ public static class ResultExtensionsTests
     [Fact(DisplayName = "AsFenced result without a language works")]
     public static void Case8()
     {
-        var value = "this is a test".AsFencedResult();
+        var value = "this is a test".ToFencedResult();
         value.Should().Be("```\nthis is a test\n```");
     }
 

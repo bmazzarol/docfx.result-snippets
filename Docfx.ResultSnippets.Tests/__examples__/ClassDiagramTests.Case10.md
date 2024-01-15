@@ -20,14 +20,17 @@ classDiagram
 `IReadOnlyList&ltint>` <|-- `List&ltint>`
 `List&ltint>` "1"  <--  "1" `ClassDiagramTests.CustomList` : FindAll
 `List&ltint>` "1"  <--  "1" `ClassDiagramTests.CustomList` : GetRange
+`List&ltint>` "1"  <--  "1" `ClassDiagramTests.CustomList` : Slice
 `List&ltint>` "1"  <--  "1" `List&ltint>` : FindAll
 `List&ltint>` "1"  <--  "1" `List&ltint>` : GetRange
+`List&ltint>` "1"  <--  "1" `List&ltint>` : Slice
 class `ClassDiagramTests.CustomList`
 `ClassDiagramTests.CustomList` : +int Capacity
 `ClassDiagramTests.CustomList` : +int Count
 `ClassDiagramTests.CustomList` : +int Item
 `ClassDiagramTests.CustomList` : -int[] _items
 `ClassDiagramTests.CustomList` : -int _size
+`ClassDiagramTests.CustomList` : -int _version
 `ClassDiagramTests.CustomList` : +Add(int item) void
 `ClassDiagramTests.CustomList` : +AddRange(IEnumerable&ltint> collection) void
 `ClassDiagramTests.CustomList` : +AsReadOnly() ReadOnlyCollection&ltint>
@@ -58,6 +61,7 @@ class `ClassDiagramTests.CustomList`
 `ClassDiagramTests.CustomList` : +GetHashCode() int
 `ClassDiagramTests.CustomList` : +GetRange(int index, int count) List&ltint>
 `ClassDiagramTests.CustomList` : +GetType() Type
+`ClassDiagramTests.CustomList` : -Grow(int capacity) void
 `ClassDiagramTests.CustomList` : +IndexOf(int item) int
 `ClassDiagramTests.CustomList` : +IndexOf(int item, int index) int
 `ClassDiagramTests.CustomList` : +IndexOf(int item, int index, int count) int
@@ -73,6 +77,7 @@ class `ClassDiagramTests.CustomList`
 `ClassDiagramTests.CustomList` : +RemoveRange(int index, int count) void
 `ClassDiagramTests.CustomList` : +Reverse() void
 `ClassDiagramTests.CustomList` : +Reverse(int index, int count) void
+`ClassDiagramTests.CustomList` : +Slice(int start, int length) List&ltint>
 `ClassDiagramTests.CustomList` : +Sort() void
 `ClassDiagramTests.CustomList` : +Sort(IComparer&ltint> comparer) void
 `ClassDiagramTests.CustomList` : +Sort(int index, int count, IComparer&ltint> comparer) void
@@ -196,6 +201,7 @@ class `List&ltint>`
 `List&ltint>` : +RemoveRange(int index, int count) void
 `List&ltint>` : +Reverse() void
 `List&ltint>` : +Reverse(int index, int count) void
+`List&ltint>` : +Slice(int start, int length) List&ltint>
 `List&ltint>` : +Sort() void
 `List&ltint>` : +Sort(IComparer&ltint> comparer) void
 `List&ltint>` : +Sort(int index, int count, IComparer&ltint> comparer) void
