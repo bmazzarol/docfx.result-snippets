@@ -84,7 +84,7 @@ var data = Enumerable
                 Nested = new { ChildId = i + 1 }
             }
     );
-var tableResult = data.AsTableResult();
+var tableResult = data.ToTableResult();
 ```
 
 Results in this,
