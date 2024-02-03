@@ -88,15 +88,12 @@ public static class ResultExtensionsTests
         // some complex data which will convert to a table
         var data = Enumerable
             .Range(1, 3)
-            .Select(
-                i =>
-                    new
-                    {
-                        Name = $"Name {i}",
-                        Id = i,
-                        Nested = new { ChildId = i + 1 }
-                    }
-            );
+            .Select(i => new
+            {
+                Name = $"Name {i}",
+                Id = i,
+                Nested = new { ChildId = i + 1 }
+            });
         var tableResult = data.ToTableResult();
 
         #endregion

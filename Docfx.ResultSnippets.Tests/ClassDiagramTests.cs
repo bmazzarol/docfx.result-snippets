@@ -264,14 +264,13 @@ public static class ClassDiagramTests
                 && !type.Name.Contains("ResultExtensions"),
             // filter out all non-public members
             classModelTransformer: classes =>
-                classes.Select(
-                    @class =>
-                        @class with
-                        {
-                            Members = @class.Members?.Where(
-                                member => member.Visibility is MemberVisibility.Public
-                            )
-                        }
+                classes.Select(@class =>
+                    @class with
+                    {
+                        Members = @class.Members?.Where(member =>
+                            member.Visibility is MemberVisibility.Public
+                        )
+                    }
                 )
         );
         result.SaveResults();

@@ -1,6 +1,6 @@
 ﻿# Class Diagrams
 
-The @Docfx.ResultSnippets.ClassDiagramBuilder.Create* methods
+The <xref:Docfx.ResultSnippets.ClassDiagramBuilder.Create*> methods
 support
 creating [mermaid class diagrams](https://mermaid.js.org/syntax/classDiagram.html)
 

@@ -20,5 +20,5 @@ like so,
 [!INCLUDE[SomeExample](some/path/to/code/__examples__/ClassName.MethodName.{Optional-PartName}.md)]
 ```
 
-See @Docfx.ResultSnippets.ResultExtensions.SaveResults* for more details
+See <xref:Docfx.ResultSnippets.ResultExtensions.SaveResults*> for more details
 about the file name format.

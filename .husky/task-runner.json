@@ -26,6 +26,14 @@
             "args": [
                 "test"
             ]
+        },
+        {
+            "name": "Lint Docs",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "Docfx.ResultSnippets.Docs/Docfx.ResultSnippets.Docs.csproj"
+            ]
         }
     ]
 }

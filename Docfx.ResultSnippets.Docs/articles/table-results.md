@@ -1,6 +1,7 @@
 ﻿# Table Results
 
-Markdown tables can be created using the @Docfx.ResultSnippets.ResultExtensions.ToTableResult*
+Markdown tables can be created using the
+<xref:Docfx.ResultSnippets.ResultExtensions.ToTableResult*>
 extension method.
 
 Any type that extends `IEnumerable<>` can be used.

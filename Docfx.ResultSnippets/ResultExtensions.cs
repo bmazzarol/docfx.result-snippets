@@ -79,9 +79,8 @@ public static class ResultExtensions
     [Pure]
     public static string ToTabResult<T>(this IEnumerable<KeyValuePair<string, T>> results) =>
         results
-            .Select(
-                x =>
-                    $"# [{x.Key}](#tab/{x.Key.ToLowerInvariant().Replace(' ', '-')})\n\n{x.Value}\n"
+            .Select(x =>
+                $"# [{x.Key}](#tab/{x.Key.ToLowerInvariant().Replace(' ', '-')})\n\n{x.Value}\n"
             )
             .JoinBy("\n");
 
@@ -137,9 +136,8 @@ public static class ResultExtensions
     )
     {
         var hList = headers.ToList();
-        var dataString = data.Select(
-                row =>
-                    $"|{row.Select(column => SerializeValue(column.value, column.type, options, defaultWhenNull)).JoinBy("|")}|"
+        var dataString = data.Select(row =>
+                $"|{row.Select(column => SerializeValue(column.value, column.type, options, defaultWhenNull)).JoinBy("|")}|"
             )
             .JoinBy("\n");
         return $"|{hList.JoinBy("|")}|\n|{hList.Select(_ => "-").JoinBy("|")}|\n{dataString}";
