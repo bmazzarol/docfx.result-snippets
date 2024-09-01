@@ -153,7 +153,7 @@ public static class ClassDiagramBuilder
                     MemberVisibility.Public => '+',
                     MemberVisibility.Private => '-',
                     MemberVisibility.Protected => '#',
-                    MemberVisibility.Internal => '~'
+                    MemberVisibility.Internal => '~',
                 }
             );
 
@@ -247,7 +247,7 @@ public static class ClassDiagramBuilder
                     CardinalityType.OneToOne => " \"1\" ",
                     CardinalityType.ManyToOne => " \"*\" ",
                     CardinalityType.OneToMany => " \"1\" ",
-                    CardinalityType.ManyToMany => " \"*\" "
+                    CardinalityType.ManyToMany => " \"*\" ",
                 }
             );
         }
@@ -262,7 +262,7 @@ public static class ClassDiagramBuilder
                 RelationshipType.LinkSolid => " -- ",
                 RelationshipType.Dependency => " <.. ",
                 RelationshipType.Realization => " <|.. ",
-                RelationshipType.LinkDashed => " .. "
+                RelationshipType.LinkDashed => " .. ",
             }
         );
 
@@ -275,7 +275,7 @@ public static class ClassDiagramBuilder
                     CardinalityType.OneToOne => " \"1\" ",
                     CardinalityType.ManyToOne => " \"1\" ",
                     CardinalityType.OneToMany => " \"*\" ",
-                    CardinalityType.ManyToMany => " \"*\" "
+                    CardinalityType.ManyToMany => " \"*\" ",
                 }
             );
         }

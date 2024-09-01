@@ -28,7 +28,7 @@ internal static class TypeExtensions
             MemberTypes.Event => ((EventInfo)member).EventHandlerType,
             MemberTypes.Field => ((FieldInfo)member).FieldType,
             MemberTypes.Method => ((MethodInfo)member).ReturnType,
-            MemberTypes.Property => ((PropertyInfo)member).PropertyType
+            MemberTypes.Property => ((PropertyInfo)member).PropertyType,
         };
 
     [Pure]
@@ -42,12 +42,12 @@ internal static class TypeExtensions
             visibility,
             (isInstance, info) switch
             {
-                (isInstance: true, info: PropertyInfo pi) when pi.GetSetMethod()?.IsAbstract == true
-                    => MemberModifier.Abstract,
-                (isInstance: true, info: MethodInfo { IsAbstract: true })
-                    => MemberModifier.Abstract,
+                (isInstance: true, info: PropertyInfo pi)
+                    when pi.GetSetMethod()?.IsAbstract == true => MemberModifier.Abstract,
+                (isInstance: true, info: MethodInfo { IsAbstract: true }) =>
+                    MemberModifier.Abstract,
                 (isInstance: false, _) => MemberModifier.Static,
-                _ => null
+                _ => null,
             },
             info.GetUnderlyingType().AsFormattedName(),
             info is MethodInfo mip ? mip.GetParameters().Select(x => x.AsParameterModel()) : null
@@ -73,13 +73,13 @@ internal static class TypeExtensions
                     (visibility, isInstance) switch
                     {
 #pragma warning disable S3011
-                        (MemberVisibility.Private, isInstance: true)
-                            => BindingFlags.NonPublic | BindingFlags.Instance,
-                        (MemberVisibility.Private, isInstance: false)
-                            => BindingFlags.NonPublic | BindingFlags.Static,
+                        (MemberVisibility.Private, isInstance: true) => BindingFlags.NonPublic
+                            | BindingFlags.Instance,
+                        (MemberVisibility.Private, isInstance: false) => BindingFlags.NonPublic
+                            | BindingFlags.Static,
 #pragma warning restore S3011
-                        (MemberVisibility.Public, isInstance: false)
-                            => BindingFlags.Public | BindingFlags.Static,
+                        (MemberVisibility.Public, isInstance: false) => BindingFlags.Public
+                            | BindingFlags.Static,
                         _ => BindingFlags.Public | BindingFlags.Instance,
                     }
                 )
@@ -110,7 +110,7 @@ internal static class TypeExtensions
                 { IsValueType: true } => ClassModifier.Struct,
                 { IsAbstract: true, IsInterface: false } => ClassModifier.Abstract,
                 { IsInterface: true } => ClassModifier.Interface,
-                _ => null
+                _ => null,
             },
             members,
             values

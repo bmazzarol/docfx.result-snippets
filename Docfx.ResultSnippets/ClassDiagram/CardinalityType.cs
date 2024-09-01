@@ -23,5 +23,5 @@ public enum CardinalityType
     /// <summary>
     /// Many to many * -> *
     /// </summary>
-    ManyToMany
+    ManyToMany,
 }

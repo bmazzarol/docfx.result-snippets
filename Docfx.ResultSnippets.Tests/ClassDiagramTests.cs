@@ -56,7 +56,7 @@ public static class ClassDiagramTests
     {
         Red,
         Green,
-        Blue
+        Blue,
     }
 
     [Fact(DisplayName = "Create a ClassDiagram from an enum")]
@@ -127,7 +127,7 @@ public static class ClassDiagramTests
             {
                 typeof(GenericClass<string>),
                 typeof(GenericClass<int>),
-                typeof(GenericClass<List<Person>>)
+                typeof(GenericClass<List<Person>>),
             }
         );
         result.SaveResults();
@@ -190,7 +190,7 @@ public static class ClassDiagramTests
                 typeof(Bird),
                 typeof(Swan),
                 typeof(Duck),
-                typeof(Dog)
+                typeof(Dog),
             }
         );
         result.SaveResults();
@@ -269,7 +269,7 @@ public static class ClassDiagramTests
                     {
                         Members = @class.Members?.Where(member =>
                             member.Visibility is MemberVisibility.Public
-                        )
+                        ),
                     }
                 )
         );
@@ -315,7 +315,7 @@ public static class ClassDiagramTests
                 new RelationshipModel("classI", "classJ", RelationshipType.LinkSolid),
                 new RelationshipModel("classK", "classL", RelationshipType.Dependency),
                 new RelationshipModel("classM", "classN", RelationshipType.Realization),
-                new RelationshipModel("classO", "classP", RelationshipType.LinkDashed)
+                new RelationshipModel("classO", "classP", RelationshipType.LinkDashed),
             }
         );
 
@@ -375,7 +375,7 @@ public static class ClassDiagramTests
                     "classH",
                     RelationshipType.Association,
                     CardinalityType.ManyToMany
-                )
+                ),
             }
         );
 
@@ -407,7 +407,7 @@ public static class ClassDiagramTests
                         ),
                         new MemberModel("Internal", MemberVisibility.Internal, TypeName: "string"),
                     }
-                )
+                ),
             },
             Enumerable.Empty<RelationshipModel>()
         );
@@ -498,15 +498,15 @@ public static class ClassDiagramTests
                             "run",
                             MemberVisibility.Public,
                             Parameters: Enumerable.Empty<ParameterModel>()
-                        )
+                        ),
                     }
-                )
+                ),
             },
             new[]
             {
                 new RelationshipModel("Duck", "Animal", RelationshipType.Inheritence),
                 new RelationshipModel("Fish", "Animal", RelationshipType.Inheritence),
-                new RelationshipModel("Zebra", "Animal", RelationshipType.Inheritence)
+                new RelationshipModel("Zebra", "Animal", RelationshipType.Inheritence),
             }
         );
 

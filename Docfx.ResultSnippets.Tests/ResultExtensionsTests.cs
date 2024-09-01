@@ -54,7 +54,7 @@ public static class ResultExtensionsTests
         var tabResult = new Dictionary<string, string>
         {
             ["Result 1"] = result1.ToFencedResult("shell"),
-            ["Result 2"] = result2.ToFencedResult("shell")
+            ["Result 2"] = result2.ToFencedResult("shell"),
         }.ToTabResult();
 
         #endregion
@@ -92,7 +92,7 @@ public static class ResultExtensionsTests
             {
                 Name = $"Name {i}",
                 Id = i,
-                Nested = new { ChildId = i + 1 }
+                Nested = new { ChildId = i + 1 },
             });
         var tableResult = data.ToTableResult();
 
@@ -113,7 +113,11 @@ public static class ResultExtensionsTests
         {
             Name = "Steve",
             Id = 1,
-            Interests = new[] { new { Id = 1, Name = "Coding" }, new { Id = 2, Name = "Football" } }
+            Interests = new[]
+            {
+                new { Id = 1, Name = "Coding" },
+                new { Id = 2, Name = "Football" },
+            },
         };
         var jsonResult = data.ToJsonResult();
 

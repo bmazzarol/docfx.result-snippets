@@ -18,5 +18,5 @@ public enum ClassModifier
     /// <summary>
     /// Struct type
     /// </summary>
-    Struct
+    Struct,
 }

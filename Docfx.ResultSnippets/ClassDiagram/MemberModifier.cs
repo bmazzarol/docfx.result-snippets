@@ -13,5 +13,5 @@ public enum MemberModifier
     /// <summary>
     /// Abstract member
     /// </summary>
-    Abstract
+    Abstract,
 }
