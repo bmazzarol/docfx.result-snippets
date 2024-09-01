@@ -43,5 +43,5 @@ public enum RelationshipType
     /// <summary>
     /// Link (dashed), ..
     /// </summary>
-    LinkDashed
+    LinkDashed,
 }

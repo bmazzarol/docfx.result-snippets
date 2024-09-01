@@ -179,7 +179,7 @@ public static class ResultExtensions
     {
         var opts = new JsonSerializerOptions(options ?? JsonSerializerOptions.Default)
         {
-            WriteIndented = true
+            WriteIndented = true,
         };
         var bytes = JsonSerializer.SerializeToUtf8Bytes(value, opts);
         return UTF8.GetString(bytes).ToFencedResult("json");

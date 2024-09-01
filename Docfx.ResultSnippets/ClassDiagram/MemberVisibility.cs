@@ -23,5 +23,5 @@ public enum MemberVisibility
     /// <summary>
     /// Package/Internal, ~
     /// </summary>
-    Internal
+    Internal,
 }
