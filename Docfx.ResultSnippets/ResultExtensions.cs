@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.IO;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 using static System.Text.Encoding;
@@ -63,28 +58,30 @@ public static class ResultExtensions
     /// <param name="language">optional language to designate the fenced result as</param>
     /// <typeparam name="T">some result T</typeparam>
     /// <returns>fenced result of calling ToString on T</returns>
-    [Pure]
-    public static string ToFencedResult<T>(this T result, string? language = null) =>
-        $"```{language ?? string.Empty}\n{result}\n```";
+    public static string ToFencedResult<T>(this T result, string? language = null)
+    {
+        return $"```{language ?? string.Empty}\n{result}\n```";
+    }
 
-    [Pure]
-    private static string JoinBy<T>(this IEnumerable<T> items, string sep) =>
-        items.Aggregate(string.Empty, (s, v) => s != string.Empty ? $"{s}{sep}{v}" : $"{v}");
+    private static string JoinBy<T>(this IEnumerable<T> items, string sep)
+    {
+        return items.Aggregate(string.Empty, (s, v) => s != string.Empty ? $"{s}{sep}{v}" : $"{v}");
+    }
 
     /// <summary>
     /// Creates tabs out of the results provided
     /// </summary>
     /// <param name="results">any type that extends from an enumerable of KeyValuePair</param>
     /// <returns>tabs</returns>
-    [Pure]
-    public static string ToTabResult<T>(this IEnumerable<KeyValuePair<string, T>> results) =>
-        results
+    public static string ToTabResult<T>(this IEnumerable<KeyValuePair<string, T>> results)
+    {
+        return results
             .Select(x =>
                 $"# [{x.Key}](#tab/{x.Key.ToLowerInvariant().Replace(' ', '-')})\n\n{x.Value}\n"
             )
             .JoinBy("\n");
+    }
 
-    [Pure]
     private static IEnumerable<string> ExtractHeaders<T>()
     {
         var type = typeof(T);
@@ -95,10 +92,9 @@ public static class ResultExtensions
                 .Select(x => x.Name);
         }
 
-        return new[] { "x" };
+        return ["x"];
     }
 
-    [Pure]
     private static IEnumerable<(object? value, Type type)> ExtractValues<T>(T value)
     {
         var type = typeof(T);
@@ -108,10 +104,9 @@ public static class ResultExtensions
                 .Select(x => (value: (object?)x.GetValue(value), type: x.PropertyType));
         }
 
-        return new[] { (value: (object?)value, type) };
+        return [(value, type)];
     }
 
-    [Pure]
     private static string SerializeValue(
         object? value,
         Type type,
@@ -127,7 +122,6 @@ public static class ResultExtensions
         return UTF8.GetString(bytes);
     }
 
-    [Pure]
     private static string CreatePipeTable(
         IEnumerable<string> headers,
         IEnumerable<IEnumerable<(object? value, Type type)>> data,
@@ -151,7 +145,6 @@ public static class ResultExtensions
     /// <param name="defaultWhenNull">default to use when a value is null</param>
     /// <typeparam name="T">some T, if its a class, each field/property becomes a column in the row</typeparam>
     /// <returns>pipe table</returns>
-    [Pure]
     public static string ToTableResult<T>(
         this IEnumerable<T> result,
         JsonSerializerOptions? options = null,

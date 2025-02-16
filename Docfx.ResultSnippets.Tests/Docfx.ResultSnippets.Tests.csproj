@@ -1,37 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-        <IsPackable>false</IsPackable>
-    </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="BunsenBurner.Verify.Xunit" Version="6.2.4" />
-        <PackageReference Include="BunsenBurner.Xunit" Version="6.2.4" />
-        <PackageReference Include="FluentAssertions" Version="7.0.0" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
-        <PackageReference Include="xunit" Version="2.9.2" />
-        <PackageReference Include="xunit.runner.visualstudio" Version="3.0.0">
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-            <PrivateAssets>all</PrivateAssets>
-        </PackageReference>
-        <PackageReference Include="coverlet.collector" Version="6.0.3">
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-            <PrivateAssets>all</PrivateAssets>
-        </PackageReference>
-    </ItemGroup>
+    <Import Project="$([MSBuild]::GetPathOfFileAbove('Common.Test.props', '$(MSBuildThisFileDirectory)'))"/>
     
     <ItemGroup>
-        <ProjectReference Include="..\Docfx.ResultSnippets\Docfx.ResultSnippets.csproj" />
+        <PackageReference Include="Verify.XunitV3"/>
+        <PackageReference Include="BunsenBurner" Condition="$(BuiltInMonoRepo) != 'true'"/>
+        <ProjectReference Include="..\..\Bunsen-Burner\BunsenBurner\BunsenBurner.csproj" Condition="$(BuiltInMonoRepo) == 'true'"/>
     </ItemGroup>
-
-    <PropertyGroup>
-        <TypeNameFormatterProjectNodeName>TypeNameFormatter.g.cs</TypeNameFormatterProjectNodeName>
-    </PropertyGroup>
     
-    <ItemGroup>
-        <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute" />
-    </ItemGroup>
 </Project>

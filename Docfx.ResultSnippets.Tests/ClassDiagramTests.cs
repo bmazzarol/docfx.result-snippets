@@ -1,29 +1,24 @@
-﻿#pragma warning disable CS0414, CS0067
+﻿using BunsenBurner;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BunsenBurner;
-using VerifyXunit;
-using Xunit;
+#pragma warning disable CS0414, CS0067, CA1852
 
 namespace Docfx.ResultSnippets.Tests;
 
-[UsesVerify]
 public static class ClassDiagramTests
 {
     #region ClassDiagramExample1
 
     class Person
     {
-        public static string TypeName = nameof(Person);
-        private static int TypeNameHashCode = nameof(Person).GetHashCode();
+        public const string TypeName = nameof(Person);
+        private static int TypeNameHashCode = StringComparer.Ordinal.GetHashCode(nameof(Person));
 
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public int Age { get; set; }
+#pragma warning disable S3264, MA0046
         public event Func<int>? SomeEvent;
+#pragma warning restore MA0046, S3264
 
         public string FullName() => $"{LastName} {LastName}";
 
@@ -39,13 +34,13 @@ public static class ClassDiagramTests
     public static async Task Case1()
     {
         var result = ClassDiagramBuilder.Create(
-            new[] { typeof(Person) },
+            [typeof(Person)],
             // remove all generated relationships
-            relationshipModelTransformer: _ => Enumerable.Empty<RelationshipModel>()
+            relationshipModelTransformer: _ => []
         );
         result.SaveResults();
 
-        await Verifier.Verify(result).UseDirectory("__snapshots__");
+        await Verify(result).UseDirectory("__snapshots__");
     }
 
     #endregion
@@ -62,10 +57,10 @@ public static class ClassDiagramTests
     [Fact(DisplayName = "Create a ClassDiagram from an enum")]
     public static async Task Case2()
     {
-        var result = ClassDiagramBuilder.Create(new[] { typeof(Colour) });
+        var result = ClassDiagramBuilder.Create([typeof(Colour)]);
         result.SaveResults();
 
-        await Verifier.Verify(result).UseDirectory("__snapshots__");
+        await Verify(result).UseDirectory("__snapshots__");
     }
 
     #endregion
@@ -82,17 +77,19 @@ public static class ClassDiagramTests
     [Fact(DisplayName = "Create a ClassDiagram from an interface")]
     public static async Task Case3()
     {
-        var result = ClassDiagramBuilder.Create(new[] { typeof(IAnimalExample) });
+        var result = ClassDiagramBuilder.Create([typeof(IAnimalExample)]);
         result.SaveResults();
 
-        await Verifier.Verify(result).UseDirectory("__snapshots__");
+        await Verify(result).UseDirectory("__snapshots__");
     }
 
     #endregion
 
     #region ClassDiagramExample4
 
+#pragma warning disable S1694
     abstract class BaseAnimal
+#pragma warning restore S1694
     {
         protected abstract void Eat();
 
@@ -102,10 +99,10 @@ public static class ClassDiagramTests
     [Fact(DisplayName = "Create a ClassDiagram from an abstract class")]
     public static async Task Case4()
     {
-        var result = ClassDiagramBuilder.Create(new[] { typeof(BaseAnimal) });
+        var result = ClassDiagramBuilder.Create([typeof(BaseAnimal)]);
         result.SaveResults();
 
-        await Verifier.Verify(result).UseDirectory("__snapshots__");
+        await Verify(result).UseDirectory("__snapshots__");
     }
 
     #endregion
@@ -116,23 +113,24 @@ public static class ClassDiagramTests
     {
         public T? SomeT { get; set; }
 
-        public IEnumerable<T> MoreT() => Enumerable.Empty<T>();
+#pragma warning disable CA1822
+        public IEnumerable<T> MoreT() => [];
+#pragma warning restore CA1822
     }
 
     [Fact(DisplayName = "Create a ClassDiagram from a generic class")]
     public static async Task Case5()
     {
         var result = ClassDiagramBuilder.Create(
-            new[]
-            {
+            [
                 typeof(GenericClass<string>),
                 typeof(GenericClass<int>),
                 typeof(GenericClass<List<Person>>),
-            }
+            ]
         );
         result.SaveResults();
 
-        await Verifier.Verify(result).UseDirectory("__snapshots__");
+        await Verify(result).UseDirectory("__snapshots__");
     }
 
     #endregion
@@ -153,11 +151,11 @@ public static class ClassDiagramTests
 
     abstract class Bird : IAnimal
     {
-        public void Eat() => throw new System.NotImplementedException();
+        public void Eat() => throw new NotSupportedException();
 
         public abstract string Call();
 
-        public void Breethe() => throw new System.NotImplementedException();
+        public void Breethe() => throw new NotSupportedException();
     }
 
     class Duck : Bird
@@ -172,30 +170,29 @@ public static class ClassDiagramTests
 
     class Dog : IAnimal
     {
-        public void Eat() => throw new System.NotImplementedException();
+        public void Eat() => throw new NotSupportedException();
 
         public string Call() => "Woof Woof";
 
-        public void Breethe() => throw new System.NotImplementedException();
+        public void Breethe() => throw new NotSupportedException();
     }
 
     [Fact(DisplayName = "Create a ClassDiagram with inheritance")]
     public static async Task Case6()
     {
         var result = ClassDiagramBuilder.Create(
-            new[]
-            {
+            [
                 typeof(ILifeform),
                 typeof(IAnimal),
                 typeof(Bird),
                 typeof(Swan),
                 typeof(Duck),
                 typeof(Dog),
-            }
+            ]
         );
         result.SaveResults();
 
-        await Verifier.Verify(result).UseDirectory("__snapshots__");
+        await Verify(result).UseDirectory("__snapshots__");
     }
 
     #endregion
@@ -229,25 +226,25 @@ public static class ClassDiagramTests
     public static async Task Case7()
     {
         var result = ClassDiagramBuilder.Create(
-            new[] { typeof(Teacher), typeof(Child), typeof(Classroom), typeof(School) }
+            [typeof(Teacher), typeof(Child), typeof(Classroom), typeof(School)]
         );
         result.SaveResults();
 
-        await Verifier.Verify(result).UseDirectory("__snapshots__");
+        await Verify(result).UseDirectory("__snapshots__");
     }
 
     #endregion
 
     [Fact(DisplayName = "CreateClassDiagram throws if no types are passed")]
-    public static async Task Case8() =>
-        await Enumerable
+    public static Task Case8() =>
+        Enumerable
             .Empty<Type>()
-            .ArrangeData()
+            .Arrange()
             .Act(empty => ClassDiagramBuilder.Create(empty))
-            .AssertFailsWith(
-                (ArgumentException e) =>
-                    e.ParamName == "types"
-                    && e.Message == "At least 1 type needs to be provided (Parameter 'types')"
+            .Throw<ArgumentException>()
+            .Assert(e =>
+                e.ParamName == "types"
+                && e.Message == "At least 1 type needs to be provided (Parameter 'types')"
             );
 
     [Fact(DisplayName = "Create a ClassDiagram from assembly")]
@@ -256,7 +253,7 @@ public static class ClassDiagramTests
         #region ClassDiagramAssembly
 
         var result = ClassDiagramBuilder.Create(
-            new[] { typeof(ClassDiagramBuilder).Assembly },
+            [typeof(ClassDiagramBuilder).Assembly],
             type =>
                 type.IsPublic
                 && !type.Name.Contains("ClassDiagramBuilder")
@@ -277,7 +274,7 @@ public static class ClassDiagramTests
 
         #endregion
 
-        await Verifier.Verify(result).UseDirectory("__snapshots__");
+        await Verify(result).UseDirectory("__snapshots__");
     }
 
     #region ClassDiagramExample8
@@ -296,7 +293,7 @@ public static class ClassDiagramTests
 
         result.SaveResults();
 
-        await Verifier.Verify(result).UseDirectory("__snapshots__");
+        await Verify(result).UseDirectory("__snapshots__");
     }
 
     [Fact(DisplayName = "ClassDiagram supports all relationships")]
@@ -305,9 +302,8 @@ public static class ClassDiagramTests
         #region ClassDiagramExample9
 
         var result = ClassDiagramBuilder.Create(
-            Enumerable.Empty<ClassModel>(),
-            new[]
-            {
+            [],
+            [
                 new RelationshipModel("classA", "classB", RelationshipType.Inheritence),
                 new RelationshipModel("classC", "classD", RelationshipType.Composition),
                 new RelationshipModel("classE", "classF", RelationshipType.Aggregation),
@@ -316,14 +312,14 @@ public static class ClassDiagramTests
                 new RelationshipModel("classK", "classL", RelationshipType.Dependency),
                 new RelationshipModel("classM", "classN", RelationshipType.Realization),
                 new RelationshipModel("classO", "classP", RelationshipType.LinkDashed),
-            }
+            ]
         );
 
         #endregion
 
         result.SaveResults();
 
-        await Verifier.Verify(result).UseDirectory("__snapshots__");
+        await Verify(result).UseDirectory("__snapshots__");
     }
 
     [Fact(DisplayName = "ClassDiagram supports notes")]
@@ -332,15 +328,15 @@ public static class ClassDiagramTests
         #region ClassDiagramExample10
 
         var result = ClassDiagramBuilder.Create(
-            new[] { new ClassModel("test", Notes: "This is a test note") },
-            Enumerable.Empty<RelationshipModel>()
+            [new ClassModel("test", Notes: "This is a test note")],
+            []
         );
 
         #endregion
 
         result.SaveResults();
 
-        await Verifier.Verify(result).UseDirectory("__snapshots__");
+        await Verify(result).UseDirectory("__snapshots__");
     }
 
     [Fact(DisplayName = "ClassDiagram supports all cardinality types")]
@@ -349,9 +345,8 @@ public static class ClassDiagramTests
         #region ClassDiagramExample11
 
         var result = ClassDiagramBuilder.Create(
-            Enumerable.Empty<ClassModel>(),
-            new[]
-            {
+            [],
+            [
                 new RelationshipModel(
                     "classA",
                     "classB",
@@ -376,14 +371,14 @@ public static class ClassDiagramTests
                     RelationshipType.Association,
                     CardinalityType.ManyToMany
                 ),
-            }
+            ]
         );
 
         #endregion
 
         result.SaveResults();
 
-        await Verifier.Verify(result).UseDirectory("__snapshots__");
+        await Verify(result).UseDirectory("__snapshots__");
     }
 
     [Fact(DisplayName = "ClassDiagram supports all member visibility types")]
@@ -392,12 +387,11 @@ public static class ClassDiagramTests
         #region ClassDiagramExample12
 
         var result = ClassDiagramBuilder.Create(
-            new[]
-            {
+            [
                 new ClassModel(
                     "Test",
-                    Members: new[]
-                    {
+                    Members:
+                    [
                         new MemberModel("Public", MemberVisibility.Public, TypeName: "string"),
                         new MemberModel("Private", MemberVisibility.Private, TypeName: "string"),
                         new MemberModel(
@@ -406,17 +400,17 @@ public static class ClassDiagramTests
                             TypeName: "string"
                         ),
                         new MemberModel("Internal", MemberVisibility.Internal, TypeName: "string"),
-                    }
+                    ]
                 ),
-            },
-            Enumerable.Empty<RelationshipModel>()
+            ],
+            []
         );
 
         #endregion
 
         result.SaveResults();
 
-        await Verifier.Verify(result).UseDirectory("__snapshots__");
+        await Verify(result).UseDirectory("__snapshots__");
     }
 
     [Fact(DisplayName = "ClassDiagram supports primitive types")]
@@ -430,7 +424,7 @@ public static class ClassDiagramTests
 
         result.SaveResults();
 
-        await Verifier.Verify(result).UseDirectory("__snapshots__");
+        await Verify(result).UseDirectory("__snapshots__");
     }
 
     [Fact(DisplayName = "Re-create the animal example from the mermaid documentation")]
@@ -439,75 +433,49 @@ public static class ClassDiagramTests
         #region ClassDiagramExample14
 
         var result = ClassDiagramBuilder.Create(
-            new[]
-            {
+            [
                 new ClassModel(
                     "Animal",
-                    Members: new[]
-                    {
+                    Members:
+                    [
                         new MemberModel("age", MemberVisibility.Public, TypeName: "int"),
                         new MemberModel("gender", MemberVisibility.Public, TypeName: "String"),
-                        new MemberModel(
-                            "isMammal",
-                            MemberVisibility.Public,
-                            Parameters: Enumerable.Empty<ParameterModel>()
-                        ),
-                        new MemberModel(
-                            "mate",
-                            MemberVisibility.Public,
-                            Parameters: Enumerable.Empty<ParameterModel>()
-                        ),
-                    },
+                        new MemberModel("isMammal", MemberVisibility.Public, Parameters: []),
+                        new MemberModel("mate", MemberVisibility.Public, Parameters: []),
+                    ],
                     Notes: "can fly\ncan swim\ncan dive\ncan help in debugging"
                 ),
                 new ClassModel(
                     "Duck",
-                    Members: new[]
-                    {
+                    Members:
+                    [
                         new MemberModel("beakColor", MemberVisibility.Public, TypeName: "String"),
-                        new MemberModel(
-                            "swim",
-                            MemberVisibility.Public,
-                            Parameters: Enumerable.Empty<ParameterModel>()
-                        ),
-                        new MemberModel(
-                            "quack",
-                            MemberVisibility.Public,
-                            Parameters: Enumerable.Empty<ParameterModel>()
-                        ),
-                    }
+                        new MemberModel("swim", MemberVisibility.Public, Parameters: []),
+                        new MemberModel("quack", MemberVisibility.Public, Parameters: []),
+                    ]
                 ),
                 new ClassModel(
                     "Fish",
-                    Members: new[]
-                    {
+                    Members:
+                    [
                         new MemberModel("sizeInFeet", MemberVisibility.Private, TypeName: "int"),
-                        new MemberModel(
-                            "canEat",
-                            MemberVisibility.Public,
-                            Parameters: Enumerable.Empty<ParameterModel>()
-                        ),
-                    }
+                        new MemberModel("canEat", MemberVisibility.Public, Parameters: []),
+                    ]
                 ),
                 new ClassModel(
                     "Zebra",
-                    Members: new[]
-                    {
+                    Members:
+                    [
                         new MemberModel("is_wild", MemberVisibility.Public, TypeName: "bool"),
-                        new MemberModel(
-                            "run",
-                            MemberVisibility.Public,
-                            Parameters: Enumerable.Empty<ParameterModel>()
-                        ),
-                    }
+                        new MemberModel("run", MemberVisibility.Public, Parameters: []),
+                    ]
                 ),
-            },
-            new[]
-            {
+            ],
+            [
                 new RelationshipModel("Duck", "Animal", RelationshipType.Inheritence),
                 new RelationshipModel("Fish", "Animal", RelationshipType.Inheritence),
                 new RelationshipModel("Zebra", "Animal", RelationshipType.Inheritence),
-            }
+            ]
         );
 
         result.SaveResults();
@@ -515,6 +483,6 @@ public static class ClassDiagramTests
         #endregion
 
 
-        await Verifier.Verify(result).UseDirectory("__snapshots__");
+        await Verify(result).UseDirectory("__snapshots__");
     }
 }

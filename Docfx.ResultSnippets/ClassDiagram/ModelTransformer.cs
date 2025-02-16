@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Docfx.ResultSnippets;
+﻿namespace Docfx.ResultSnippets;
 
 /// <summary>
 /// Model transformer

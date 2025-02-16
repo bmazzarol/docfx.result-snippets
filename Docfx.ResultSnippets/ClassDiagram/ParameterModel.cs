@@ -5,4 +5,4 @@
 /// </summary>
 /// <param name="Name">parameter name</param>
 /// <param name="TypeName">type name</param>
-public record ParameterModel(string Name, string TypeName);
+public sealed record ParameterModel(string Name, string TypeName);

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Docfx.ResultSnippets;
+﻿namespace Docfx.ResultSnippets;
 
 /// <summary>
 /// Model of a member within a class
@@ -10,10 +8,10 @@ namespace Docfx.ResultSnippets;
 /// <param name="Modifier">optional modifier</param>
 /// <param name="TypeName">optional type name</param>
 /// <param name="Parameters">optional parameters</param>
-public record MemberModel(
+public sealed record MemberModel(
     string Name,
     MemberVisibility Visibility,
-    MemberModifier? Modifier = default,
-    string? TypeName = default,
-    IEnumerable<ParameterModel>? Parameters = default
+    MemberModifier? Modifier = null,
+    string? TypeName = null,
+    IEnumerable<ParameterModel>? Parameters = null
 );

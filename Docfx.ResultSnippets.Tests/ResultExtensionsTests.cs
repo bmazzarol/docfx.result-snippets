@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FluentAssertions;
-using VerifyXunit;
-using Xunit;
+﻿namespace Docfx.ResultSnippets.Tests;
 
-namespace Docfx.ResultSnippets.Tests;
-
-[UsesVerify]
 public static class ResultExtensionsTests
 {
     [Fact(DisplayName = "Example usage of SaveResults")]
@@ -24,7 +15,7 @@ public static class ResultExtensionsTests
         "Some other result".SaveResults(partName: "part2");
         #endregion
 
-        result.Should().Be("Some result to save");
+        Assert.Equal("Some result to save", result);
     }
 
     [Fact(DisplayName = "Example usage of FenceResult")]
@@ -33,14 +24,14 @@ public static class ResultExtensionsTests
         #region FenceResultExample1
 
         // some result that should be fenced
-        var result = "sh ./run-script --some-param a";
-        var fencedResult = result.ToFencedResult("shell");
+        const string result = "sh ./run-script --some-param a";
+        string fencedResult = result.ToFencedResult("shell");
 
         #endregion
 
         fencedResult.SaveResults();
 
-        await Verifier.Verify(fencedResult).UseDirectory("__snapshots__");
+        await Verify(fencedResult).UseDirectory("__snapshots__");
     }
 
     [Fact(DisplayName = "Example usage of TabResult")]
@@ -49,9 +40,9 @@ public static class ResultExtensionsTests
         #region TabResultExample1
 
         // some result that should be placed into a tab
-        var result1 = "sh ./run-script --some-param a";
-        var result2 = "sh ./run-script --some-other-param b";
-        var tabResult = new Dictionary<string, string>
+        const string result1 = "sh ./run-script --some-param a";
+        const string result2 = "sh ./run-script --some-other-param b";
+        string tabResult = new Dictionary<string, string>(StringComparer.Ordinal)
         {
             ["Result 1"] = result1.ToFencedResult("shell"),
             ["Result 2"] = result2.ToFencedResult("shell"),
@@ -61,7 +52,7 @@ public static class ResultExtensionsTests
 
         tabResult.SaveResults();
 
-        await Verifier.Verify(tabResult).UseDirectory("__snapshots__");
+        await Verify(tabResult).UseDirectory("__snapshots__");
     }
 
     [Fact(DisplayName = "Example usage of TableResult for a simple type")]
@@ -70,14 +61,14 @@ public static class ResultExtensionsTests
         #region TableResultExample1
 
         // some simple data which will convert to a table
-        var data = Enumerable.Range(1, 3).OfType<int?>().Append(null);
-        var tableResult = data.ToTableResult(defaultWhenNull: " - ");
+        IEnumerable<int?> data = Enumerable.Range(1, 3).OfType<int?>().Append(element: null);
+        string tableResult = data.ToTableResult(defaultWhenNull: " - ");
 
         #endregion
 
         tableResult.SaveResults();
 
-        await Verifier.Verify(tableResult).UseDirectory("__snapshots__");
+        await Verify(tableResult).UseDirectory("__snapshots__");
     }
 
     [Fact(DisplayName = "Example usage of TableResult for a complex type")]
@@ -94,13 +85,13 @@ public static class ResultExtensionsTests
                 Id = i,
                 Nested = new { ChildId = i + 1 },
             });
-        var tableResult = data.ToTableResult();
+        string tableResult = data.ToTableResult();
 
         #endregion
 
         tableResult.SaveResults();
 
-        await Verifier.Verify(tableResult).UseDirectory("__snapshots__");
+        await Verify(tableResult).UseDirectory("__snapshots__");
     }
 
     [Fact(DisplayName = "Example usage of JsonResult")]
@@ -125,22 +116,22 @@ public static class ResultExtensionsTests
 
         jsonResult.SaveResults();
 
-        await Verifier.Verify(jsonResult).UseDirectory("__snapshots__");
+        await Verify(jsonResult).UseDirectory("__snapshots__");
     }
 
     [Fact(DisplayName = "null value can have SaveResult called on it")]
     public static void Case7()
     {
-        string? value = null;
+        const string? value = null;
         value.SaveResults();
-        true.Should().BeTrue();
+        Assert.Null(value);
     }
 
     [Fact(DisplayName = "AsFenced result without a language works")]
     public static void Case8()
     {
         var value = "this is a test".ToFencedResult();
-        value.Should().Be("```\nthis is a test\n```");
+        Assert.Equal("```\nthis is a test\n```", value);
     }
 
     [Fact(DisplayName = "Save results skip files if they already exist")]
@@ -149,11 +140,11 @@ public static class ResultExtensionsTests
         #region SaveResultsExample2
 
         // some non-deterministic value
-        var result = Guid.NewGuid();
+        Guid result = Guid.NewGuid();
         // now it can be saved as an example the first time only
         result.SaveResults(replaceExisting: false);
         #endregion
 
-        result.Should().NotBeEmpty();
+        Assert.NotEqual(Guid.Empty, result);
     }
 }

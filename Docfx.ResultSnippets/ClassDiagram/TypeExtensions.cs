@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
+﻿using System.Collections;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using TypeNameFormatter;
@@ -11,18 +7,20 @@ namespace Docfx.ResultSnippets;
 
 internal static class TypeExtensions
 {
-    [Pure]
-    private static string AsFormattedName(this Type type) =>
-        type.GetFormattedName().Replace("<", "&lt");
+    private static string AsFormattedName(this Type type)
+    {
+        return type.GetFormattedName().Replace("<", "&lt");
+    }
 
-    [Pure]
-    private static ParameterModel AsParameterModel(this ParameterInfo info) =>
-        new(info.Name, info.ParameterType.AsFormattedName());
+    private static ParameterModel AsParameterModel(this ParameterInfo info)
+    {
+        return new ParameterModel(info.Name, info.ParameterType.AsFormattedName());
+    }
 
-    [Pure]
-    private static Type GetUnderlyingType(this MemberInfo member) =>
+    private static Type GetUnderlyingType(this MemberInfo member)
+    {
 #pragma warning disable CS8509
-        member.MemberType switch
+        return member.MemberType switch
 #pragma warning restore CS8509
         {
             MemberTypes.Event => ((EventInfo)member).EventHandlerType,
@@ -30,14 +28,15 @@ internal static class TypeExtensions
             MemberTypes.Method => ((MethodInfo)member).ReturnType,
             MemberTypes.Property => ((PropertyInfo)member).PropertyType,
         };
+    }
 
-    [Pure]
     private static MemberModel AsMemberModel(
         this MemberInfo info,
         MemberVisibility visibility,
         bool isInstance
-    ) =>
-        new(
+    )
+    {
+        return new MemberModel(
             info.Name,
             visibility,
             (isInstance, info) switch
@@ -52,20 +51,21 @@ internal static class TypeExtensions
             info.GetUnderlyingType().AsFormattedName(),
             info is MethodInfo mip ? mip.GetParameters().Select(x => x.AsParameterModel()) : null
         );
+    }
 
-    [Pure]
-    private static bool IsSupportedMember(this MemberInfo? mi) =>
-        mi?.MemberType
-            is MemberTypes.Event
-                or MemberTypes.Field
-                or MemberTypes.Property
-                or MemberTypes.Method
-        && mi.GetCustomAttribute<CompilerGeneratedAttribute>() == null
-        && mi
-            is (not PropertyInfo or PropertyInfo { IsSpecialName: false })
-                and (not MethodInfo or MethodInfo { IsSpecialName: false });
+    private static bool IsSupportedMember(this MemberInfo? mi)
+    {
+        return mi?.MemberType
+                is MemberTypes.Event
+                    or MemberTypes.Field
+                    or MemberTypes.Property
+                    or MemberTypes.Method
+            && mi.GetCustomAttribute<CompilerGeneratedAttribute>() == null
+            && mi
+                is ((not PropertyInfo) or PropertyInfo { IsSpecialName: false })
+                    and ((not MethodInfo) or MethodInfo { IsSpecialName: false });
+    }
 
-    [Pure]
     internal static ClassModel AsClassModel(this Type type)
     {
         IEnumerable<MemberModel> GetMembers(MemberVisibility visibility, bool isInstance) =>
@@ -117,7 +117,6 @@ internal static class TypeExtensions
         );
     }
 
-    [Pure]
     internal static IEnumerable<RelationshipModel> AsInheritanceRelationships(
         this IEnumerable<Type> types
     )
@@ -169,7 +168,6 @@ internal static class TypeExtensions
         return relationshipModels;
     }
 
-    [Pure]
     private static bool IsEnumerable(this Type type, out Type? nestedType)
     {
         var enumerableInterface = Array.Find(
@@ -195,7 +193,6 @@ internal static class TypeExtensions
         return true;
     }
 
-    [Pure]
     internal static IEnumerable<RelationshipModel> AsMemberRelationships(
         this IEnumerable<Type> types
     )
