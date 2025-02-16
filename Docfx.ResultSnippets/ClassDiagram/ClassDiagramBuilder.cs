@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Text;
 
 namespace Docfx.ResultSnippets;
@@ -12,7 +8,6 @@ namespace Docfx.ResultSnippets;
 /// </summary>
 public static class ClassDiagramBuilder
 {
-    [Pure]
     private static IEnumerable<Type> AsTypes(
         this IEnumerable<Assembly> assemblies,
         Func<Type, bool>? typeFilter
@@ -34,10 +29,10 @@ public static class ClassDiagramBuilder
     /// <exception cref="ArgumentException">if no types are provided</exception>
     public static string Create(
         Type type,
-        ModelTransformer<Assembly>? assemblyTransformer = default,
-        Func<Type, bool>? typeFilter = default,
-        ModelTransformer<ClassModel>? classModelTransformer = default,
-        ModelTransformer<RelationshipModel>? relationshipModelTransformer = default
+        ModelTransformer<Assembly>? assemblyTransformer = null,
+        Func<Type, bool>? typeFilter = null,
+        ModelTransformer<ClassModel>? classModelTransformer = null,
+        ModelTransformer<RelationshipModel>? relationshipModelTransformer = null
     )
     {
         var at = assemblyTransformer ?? (_ => _);
@@ -45,7 +40,7 @@ public static class ClassDiagramBuilder
             new[] { type }
                 .Concat(type.GetInterfaces())
                 .Concat(
-                    at(new[] { type.Assembly })
+                    at([type.Assembly])
                         .AsTypes(typeFilter)
                         .Where(x => x != type && type.IsAssignableFrom(x))
                 ),
@@ -65,9 +60,9 @@ public static class ClassDiagramBuilder
     /// <exception cref="ArgumentException">if no types are provided</exception>
     public static string Create(
         IEnumerable<Assembly> assemblies,
-        Func<Type, bool>? typeFilter = default,
-        ModelTransformer<ClassModel>? classModelTransformer = default,
-        ModelTransformer<RelationshipModel>? relationshipModelTransformer = default
+        Func<Type, bool>? typeFilter = null,
+        ModelTransformer<ClassModel>? classModelTransformer = null,
+        ModelTransformer<RelationshipModel>? relationshipModelTransformer = null
     ) =>
         Create(assemblies.AsTypes(typeFilter), classModelTransformer, relationshipModelTransformer);
 
@@ -81,8 +76,8 @@ public static class ClassDiagramBuilder
     /// <exception cref="ArgumentException">if no types are provided</exception>
     public static string Create(
         IEnumerable<Type> types,
-        ModelTransformer<ClassModel>? classModelTransformer = default,
-        ModelTransformer<RelationshipModel>? relationshipModelTransformer = default
+        ModelTransformer<ClassModel>? classModelTransformer = null,
+        ModelTransformer<RelationshipModel>? relationshipModelTransformer = null
     )
     {
         var distinctTypes = types.Distinct().ToList();

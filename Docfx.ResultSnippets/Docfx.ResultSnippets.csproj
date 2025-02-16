@@ -1,66 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <Authors>Ben Mazzarol</Authors>
-    </PropertyGroup>
+    <Import Project="$([MSBuild]::GetPathOfFileAbove('Common.Release.props', '$(MSBuildThisFileDirectory)'))"/>
 
     <PropertyGroup>
-        <PackageId>Docfx.ResultSnippets</PackageId>
+        <TargetFramework>netstandard2.0</TargetFramework> 
         <Title>Docfx.ResultSnippets</Title>
         <Description>Include the executed results from code in your Docfx documentation!</Description>
         <PackageTags>C#, Docfx, Documentation</PackageTags>
         <PackageProjectUrl>https://bmazzarol.github.io/docfx.result-snippets</PackageProjectUrl>
         <RepositoryUrl>https://github.com/bmazzarol/docfx.result-snippets</RepositoryUrl>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <Copyright>Copyright (c) Ben Mazzarol. All rights reserved.</Copyright>
-        <ProjectGuid>7785ca26-4a1d-42cb-acb1-d8de50fa9646</ProjectGuid>
-        <IncludeSymbols>true</IncludeSymbols>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        <PublishRepositoryUrl>true</PublishRepositoryUrl>
-        <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <IsPackable>True</IsPackable>
-        <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>downloadable-logo.png</PackageIcon>
     </PropertyGroup>
     
-    <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
-        <LangVersion>latest</LangVersion>
-        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-        <AnalysisMode>Recommended</AnalysisMode>
-        <Nullable>enable</Nullable>
-        <OutputType>library</OutputType>
-    </PropertyGroup>
-    
     <ItemGroup>
-        <None Include="README.md" Pack="true" PackagePath="\" />
         <None Include="..\downloadable-logo.png" Pack="true" PackagePath="\" />
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     </ItemGroup>
     
     <ItemGroup>
-        <PackageReference Include="AsyncFixer" Version="1.6.0">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="Meziantou.Analyzer" Version="2.0.184">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="Roslynator.Analyzers" Version="4.12.10">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="10.4.0.108396">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-    </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="System.Text.Json" Version="9.0.0" />
-        <PackageReference Include="TypeNameFormatter.Sources" Version="1.1.1">
+        <PackageReference Include="System.Text.Json"/>
+        <PackageReference Include="TypeNameFormatter.Sources">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
         </PackageReference>
@@ -69,11 +27,5 @@
     <PropertyGroup>
         <TypeNameFormatterProjectNodeName>TypeNameFormatter.g.cs</TypeNameFormatterProjectNodeName>
     </PropertyGroup>
-    
-    <ItemGroup>
-        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
-            <_Parameter1>Docfx.ResultSnippets.Tests</_Parameter1>
-        </AssemblyAttribute>
-    </ItemGroup>
 
 </Project>

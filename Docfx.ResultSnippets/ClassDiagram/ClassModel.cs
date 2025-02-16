@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Docfx.ResultSnippets;
+﻿namespace Docfx.ResultSnippets;
 
 /// <summary>
 /// Model of a class in the class diagram
@@ -10,10 +8,10 @@ namespace Docfx.ResultSnippets;
 /// <param name="Members">optional members, if provided the member is a method</param>
 /// <param name="Values">optional values, if set the class is an enum</param>
 /// <param name="Notes">optional notes against the class</param>
-public record ClassModel(
+public sealed record ClassModel(
     string Name,
-    ClassModifier? Modifier = default,
-    IEnumerable<MemberModel>? Members = default,
-    IEnumerable<string>? Values = default,
+    ClassModifier? Modifier = null,
+    IEnumerable<MemberModel>? Members = null,
+    IEnumerable<string>? Values = null,
     string? Notes = null
 );

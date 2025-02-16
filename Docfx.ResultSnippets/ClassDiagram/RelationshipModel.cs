@@ -8,7 +8,7 @@
 /// <param name="Type">relationship type</param>
 /// <param name="Cardinality">optional cardinality type</param>
 /// <param name="Label">optional label</param>
-public record RelationshipModel(
+public sealed record RelationshipModel(
     string FromType,
     string ToType,
     RelationshipType Type,
