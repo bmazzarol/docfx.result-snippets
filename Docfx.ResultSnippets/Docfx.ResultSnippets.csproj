@@ -1,31 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-    <Import Project="$([MSBuild]::GetPathOfFileAbove('Common.Release.props', '$(MSBuildThisFileDirectory)'))"/>
-
-    <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework> 
-        <Title>Docfx.ResultSnippets</Title>
-        <Description>Include the executed results from code in your Docfx documentation!</Description>
-        <PackageTags>C#, Docfx, Documentation</PackageTags>
-        <PackageProjectUrl>https://bmazzarol.github.io/docfx.result-snippets</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/bmazzarol/docfx.result-snippets</RepositoryUrl>
-        <PackageIcon>downloadable-logo.png</PackageIcon>
-    </PropertyGroup>
-    
-    <ItemGroup>
-        <None Include="..\downloadable-logo.png" Pack="true" PackagePath="\" />
-    </ItemGroup>
-    
-    <ItemGroup>
-        <PackageReference Include="System.Text.Json"/>
-        <PackageReference Include="TypeNameFormatter.Sources">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-        </PackageReference>
-    </ItemGroup>
-    
-    <PropertyGroup>
-        <TypeNameFormatterProjectNodeName>TypeNameFormatter.g.cs</TypeNameFormatterProjectNodeName>
-    </PropertyGroup>
-
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Common.Release.props', '$(MSBuildThisFileDirectory)'))" />
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Title>Docfx.ResultSnippets</Title>
+    <Description>Include the executed results from code in your Docfx documentation!</Description>
+    <PackageTags>C#, Docfx, Documentation</PackageTags>
+    <PackageProjectUrl>https://bmazzarol.github.io/docfx.result-snippets</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bmazzarol/docfx.result-snippets</RepositoryUrl>
+    <PackageIcon>downloadable-logo.png</PackageIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\downloadable-logo.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" />
+    <PackageReference Include="TypeNameFormatter.Sources">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <TypeNameFormatterProjectNodeName>TypeNameFormatter.g.cs</TypeNameFormatterProjectNodeName>
+  </PropertyGroup>
 </Project>
