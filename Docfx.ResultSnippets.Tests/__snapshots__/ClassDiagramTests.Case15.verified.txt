@@ -281,6 +281,7 @@ class `int`
 `int` : -int System.Numerics.INumberBase<System.Int32>.Zero$
 `int` : -int System.Numerics.ISignedNumber<System.Int32>.NegativeOne$
 `int` : +Abs(int value) int$
+`int` : +BigMul(int left, int right) long$
 `int` : +Clamp(int value, int min, int max) int$
 `int` : +CompareTo(object value) int
 `int` : +CompareTo(int value) int
@@ -380,6 +381,7 @@ class `int`
 `int` : -System.Numerics.INumberBase<System.Int32>.IsZero(int value) bool$
 `int` : -System.Numerics.INumberBase<System.Int32>.MaxMagnitudeNumber(int x, int y) int$
 `int` : -System.Numerics.INumberBase<System.Int32>.MinMagnitudeNumber(int x, int y) int$
+`int` : -System.Numerics.INumberBase<System.Int32>.MultiplyAddEstimate(int left, int right, int addend) int$
 `int` : -System.Numerics.INumberBase<System.Int32>.TryConvertFromChecked(TOther value, ref int result) bool$
 `int` : -System.Numerics.INumberBase<System.Int32>.TryConvertFromSaturating(TOther value, ref int result) bool$
 `int` : -System.Numerics.INumberBase<System.Int32>.TryConvertFromTruncating(TOther value, ref int result) bool$
@@ -416,10 +418,13 @@ class `int`
 class `INumber&ltint>`
 <<interface>> `INumber&ltint>`
 `INumber&ltint>` : +Clamp(int value, int min, int max) int$
+`INumber&ltint>` : +ClampNative(int value, int min, int max) int$
 `INumber&ltint>` : +CopySign(int value, int sign) int$
 `INumber&ltint>` : +Max(int x, int y) int$
+`INumber&ltint>` : +MaxNative(int x, int y) int$
 `INumber&ltint>` : +MaxNumber(int x, int y) int$
 `INumber&ltint>` : +Min(int x, int y) int$
+`INumber&ltint>` : +MinNative(int x, int y) int$
 `INumber&ltint>` : +MinNumber(int x, int y) int$
 `INumber&ltint>` : +Sign(int value) int$
 class `INumberBase&ltint>`
@@ -452,6 +457,7 @@ class `INumberBase&ltint>`
 `INumberBase&ltint>` : +MaxMagnitudeNumber(int x, int y) int$
 `INumberBase&ltint>` : +MinMagnitude(int x, int y) int$
 `INumberBase&ltint>` : +MinMagnitudeNumber(int x, int y) int$
+`INumberBase&ltint>` : +MultiplyAddEstimate(int left, int right, int addend) int$
 `INumberBase&ltint>` : +Parse(string s, NumberStyles style, IFormatProvider provider) int$
 `INumberBase&ltint>` : +Parse(ReadOnlySpan&ltchar> s, NumberStyles style, IFormatProvider provider) int$
 `INumberBase&ltint>` : +Parse(ReadOnlySpan&ltbyte> utf8Text, NumberStyles style, IFormatProvider provider) int$

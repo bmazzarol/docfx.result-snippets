@@ -62,6 +62,7 @@ class `ClassDiagramTests.CustomList`
 `ClassDiagramTests.CustomList` : +GetRange(int index, int count) List&ltint>
 `ClassDiagramTests.CustomList` : +GetType() Type
 `ClassDiagramTests.CustomList` : -Grow(int capacity) void
+`ClassDiagramTests.CustomList` : -GrowForInsertion(int indexToInsert, int insertionCount) void
 `ClassDiagramTests.CustomList` : +IndexOf(int item) int
 `ClassDiagramTests.CustomList` : +IndexOf(int item, int index) int
 `ClassDiagramTests.CustomList` : +IndexOf(int item, int index, int count) int
@@ -182,9 +183,11 @@ class `List&ltint>`
 `List&ltint>` : +ForEach(Action&ltint> action) void
 `List&ltint>` : +GetEnumerator() List&ltint>.Enumerator
 `List&ltint>` : +GetHashCode() int
+`List&ltint>` : -GetNewCapacity(int capacity) int
 `List&ltint>` : +GetRange(int index, int count) List&ltint>
 `List&ltint>` : +GetType() Type
 `List&ltint>` : -Grow(int capacity) void
+`List&ltint>` : -GrowForInsertion(int indexToInsert, int insertionCount) void
 `List&ltint>` : +IndexOf(int item) int
 `List&ltint>` : +IndexOf(int item, int index) int
 `List&ltint>` : +IndexOf(int item, int index, int count) int

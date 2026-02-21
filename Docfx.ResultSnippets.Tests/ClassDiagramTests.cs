@@ -121,13 +121,11 @@ public static class ClassDiagramTests
     [Fact(DisplayName = "Create a ClassDiagram from a generic class")]
     public static async Task Case5()
     {
-        var result = ClassDiagramBuilder.Create(
-            [
-                typeof(GenericClass<string>),
-                typeof(GenericClass<int>),
-                typeof(GenericClass<List<Person>>),
-            ]
-        );
+        var result = ClassDiagramBuilder.Create([
+            typeof(GenericClass<string>),
+            typeof(GenericClass<int>),
+            typeof(GenericClass<List<Person>>),
+        ]);
         result.SaveResults();
 
         await Verify(result).UseDirectory("__snapshots__");
@@ -180,16 +178,14 @@ public static class ClassDiagramTests
     [Fact(DisplayName = "Create a ClassDiagram with inheritance")]
     public static async Task Case6()
     {
-        var result = ClassDiagramBuilder.Create(
-            [
-                typeof(ILifeform),
-                typeof(IAnimal),
-                typeof(Bird),
-                typeof(Swan),
-                typeof(Duck),
-                typeof(Dog),
-            ]
-        );
+        var result = ClassDiagramBuilder.Create([
+            typeof(ILifeform),
+            typeof(IAnimal),
+            typeof(Bird),
+            typeof(Swan),
+            typeof(Duck),
+            typeof(Dog),
+        ]);
         result.SaveResults();
 
         await Verify(result).UseDirectory("__snapshots__");
@@ -225,9 +221,12 @@ public static class ClassDiagramTests
     [Fact(DisplayName = "Create a ClassDiagram with association")]
     public static async Task Case7()
     {
-        var result = ClassDiagramBuilder.Create(
-            [typeof(Teacher), typeof(Child), typeof(Classroom), typeof(School)]
-        );
+        var result = ClassDiagramBuilder.Create([
+            typeof(Teacher),
+            typeof(Child),
+            typeof(Classroom),
+            typeof(School),
+        ]);
         result.SaveResults();
 
         await Verify(result).UseDirectory("__snapshots__");

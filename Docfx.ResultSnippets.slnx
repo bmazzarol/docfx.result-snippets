@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Docfx.ResultSnippets.Docs/Docfx.ResultSnippets.Docs.csproj" />
+  <Project Path="Docfx.ResultSnippets.Tests/Docfx.ResultSnippets.Tests.csproj" />
+  <Project Path="Docfx.ResultSnippets/Docfx.ResultSnippets.csproj" />
+</Solution>
