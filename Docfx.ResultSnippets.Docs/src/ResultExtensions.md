@@ -37,7 +37,7 @@ example:
 ---
 uid: Docfx.ResultSnippets.ResultExtensions.AsTableResult``1(System.Collections.Generic.IEnumerable{``0},System.Text.Json.JsonSerializerOptions,System.String)
 example:
-- Example `AsTableResult` usage for simple types,
+- Example `AsTableResult` usage for primitive types,
 
   [!code-csharp[](../../Docfx.ResultSnippets.Tests/ResultExtensionsTests.cs#TableResultExample1)]
 

@@ -40,7 +40,7 @@ Which generates a Markdown file that can be added via the include file like so,
 
 ## Getting Started
 
-To use this library, simply include `Docfx.ResultSnippets.dll` in your project
+Add the package to the test project that runs the snippets:
 or grab it from [NuGet](https://www.nuget.org/packages/Docfx.ResultSnippets/),
 and add this to the top of each `.cs` file that needs it:
 
@@ -50,7 +50,7 @@ using Docfx.ResultSnippets;
 
 ## Why?
 
-Docfx has amazing tools for including code snippets in your documentation but
+Docfx includes code snippets in documentation, but
 not the results from executing that code.
 
 For some code examples the formatted result of executing that code is as

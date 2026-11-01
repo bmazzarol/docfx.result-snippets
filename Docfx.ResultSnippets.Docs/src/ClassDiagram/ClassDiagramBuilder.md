@@ -1,7 +1,7 @@
 ﻿---
 uid: Docfx.ResultSnippets.ClassDiagramBuilder.Create*
 example:
-- Example simple class,
+- Example class,
 
   [!code-csharp[](../../../Docfx.ResultSnippets.Tests/ClassDiagramTests.cs#ClassDiagramExample1)]
 
