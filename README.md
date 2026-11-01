@@ -1,23 +1,14 @@
-﻿<!-- markdownlint-disable MD033 MD041 -->
-<div align="center">
-
-<img src="downloadable-logo.png" alt="Docfx.ResultSnippets" width="150px"/>
+![Docfx Result Snippets](downloadable-logo.png)
 
 # Docfx Result Snippets
 
-[:running: **_Getting Started_**](https://bmazzarol.github.io/docfx.result-snippets/articles/getting-started.html)
-|
-[:books: **_Documentation_**](https://bmazzarol.github.io/docfx.result-snippets)
+**Show what the code actually printed.**
 
-[![Nuget](https://img.shields.io/nuget/v/Docfx.ResultSnippets)](https://www.nuget.org/packages/docfx.result-snippets/)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=bmazzarol_docfx.result-snippets&metric=coverage)](https://sonarcloud.io/summary/new_code?id=bmazzarol_docfx.result-snippets)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bmazzarol_docfx.result-snippets&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=bmazzarol_docfx.result-snippets)
-[![CD Build](https://github.com/bmazzarol/docfx.result-snippets/actions/workflows/cd-build.yml/badge.svg)](https://github.com/bmazzarol/docfx.result-snippets/actions/workflows/cd-build.yml)
-[![Check Markdown](https://github.com/bmazzarol/docfx.result-snippets/actions/workflows/check-markdown.yml/badge.svg)](https://github.com/bmazzarol/docfx.result-snippets/actions/workflows/check-markdown.yml)
+Saves the output of a method call to markdown, which a docfx page can include as a table, chart, class diagram or plain snippet.
 
-Include the executed results **_from code_** in your Docfx documentation!
+[![Nuget](https://img.shields.io/nuget/v/Docfx.ResultSnippets)](https://www.nuget.org/packages/Docfx.ResultSnippets/) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=bmazzarol_docfx.result-snippets&metric=coverage)](https://sonarcloud.io/summary/new_code?id=bmazzarol_docfx.result-snippets) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bmazzarol_docfx.result-snippets&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=bmazzarol_docfx.result-snippets) [![CD Build](https://github.com/bmazzarol/docfx.result-snippets/actions/workflows/cd-build.yml/badge.svg)](https://github.com/bmazzarol/docfx.result-snippets/actions/workflows/cd-build.yml) [![Check Markdown](https://github.com/bmazzarol/docfx.result-snippets/actions/workflows/check-markdown.yml/badge.svg)](https://github.com/bmazzarol/docfx.result-snippets/actions/workflows/check-markdown.yml)
 
-</div>
+[:running: **_Getting Started_**](https://bmazzarol.github.io/docfx.result-snippets/articles/getting-started.html) | [:books: **_Documentation_**](https://bmazzarol.github.io/docfx.result-snippets/)
 
 ## Features
 
