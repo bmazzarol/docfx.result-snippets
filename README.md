@@ -2,7 +2,7 @@
 
 # Docfx Result Snippets
 
-**Show what the code actually printed.**
+**Show what the code printed.**
 
 Saves the output of a method call to markdown, which a docfx page can include as a table, chart, class diagram or plain snippet.
 

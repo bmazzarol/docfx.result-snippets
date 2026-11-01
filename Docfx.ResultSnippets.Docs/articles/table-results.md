@@ -6,7 +6,7 @@ extension method.
 
 Any type that extends `IEnumerable<>` can be used.
 
-If the type is a simple type it is rendered in a single column like this,
+When the items are primitives, the table has a single column like this,
 
 [!code-csharp[](../../Docfx.ResultSnippets.Tests/ResultExtensionsTests.cs#TableResultExample1)]
 

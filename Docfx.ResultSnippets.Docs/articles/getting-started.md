@@ -1,14 +1,17 @@
 # Getting Started
 
-To use this library, simply include `Docfx.ResultSnippets.dll` in your project
-or grab it from [NuGet](https://www.nuget.org/packages/Docfx.ResultSnippets/),
-and add this to the top of each `.cs` file that needs it:
+Add the package, then use it in the test that produces the result,
 
-```C#
+```shell
+dotnet add package Docfx.ResultSnippets
+```
+
+```c#
 using Docfx.ResultSnippets;
 ```
 
-Then you can use it in a project like this,
+The result of a call is written to a markdown file, which a docfx page can then
+include,
 
 [!code-csharp[](../../Docfx.ResultSnippets.Tests/ResultExtensionsTests.cs#SaveResultsExample1)]
 
