@@ -19,4 +19,4 @@ jobs:
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           sonarToken: ${{ secrets.SONAR_TOKEN }}
-          sonarProjectKey: bmazzarol_docfx.result-snippets
+          sonarProjectKey: ${{ vars.SONAR_PROJECT_KEY }}
