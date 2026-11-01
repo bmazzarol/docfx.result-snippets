@@ -1,98 +1,70 @@
-<!-- markdownlint-disable MD013 -->
+![Docfx Result Snippets](https://raw.githubusercontent.com/bmazzarol/docfx.result-snippets/main/downloadable-small-logo.png)
 
-# ![Docfx.ResultSnippets](https://raw.githubusercontent.com/bmazzarol/docfx.result-snippets/main/downloadable-small-logo.png) Docfx Result Snippets
+# Docfx Result Snippets
 
-<!-- markdownlint-enable MD013 -->
+**Show what the code printed.**
+
+Saves the output of a method call to markdown, which a docfx page can include as a table, chart, class diagram or plain snippet.
 
 [![Nuget](https://img.shields.io/nuget/v/Docfx.ResultSnippets)](https://www.nuget.org/packages/Docfx.ResultSnippets/)
 
-* [Getting Started](https://bmazzarol.github.io/docfx.result-snippets/articles/getting-started.html)
-* [Documentation](https://bmazzarol.github.io/docfx.result-snippets)
-
-## Features
-
-* Export results
-  to [tables](https://bmazzarol.github.io/docfx.result-snippets/articles/table-results.html)
-* Convert `Types`
-  to [class diagrams](https://bmazzarol.github.io/docfx.result-snippets/articles/class-diagram-results.html)
-* Export results
-  to [any format supported by markdig](https://bmazzarol.github.io/docfx.result-snippets/articles/chart-results.html)
-
-```c#
-using Docfx.ResultSnippets;
-
-...
-
-// some return value
-const string result = "Some result to save";
-// now it can be saved as an example
-result.SaveResults();
-// we can also add a part to the name
-"Some other result".SaveResults(partName: "part2");
-
+```shell
+dotnet add package Docfx.ResultSnippets
 ```
 
-Which generates a Markdown file that can be added via the include file like so,
+[Getting started](https://bmazzarol.github.io/docfx.result-snippets/articles/getting-started.html) - [Full documentation](https://bmazzarol.github.io/docfx.result-snippets/)
+
+## Why?
+
+Docfx includes code snippets, but not the result of running that code. For some
+examples the output matters as much as the code that produced it.
+
+This library writes the result of a call to a markdown file next to the code that
+produced it, which a docfx page pulls in with an include:
 
 ```markdown
 [!INCLUDE[SomeExample](some/path/to/code/__examples__/ClassName.MethodName.{Optional-PartName}.md)]
 ```
 
-## Getting Started
-
-Add the package to the test project that runs the snippets:
-or grab it from [NuGet](https://www.nuget.org/packages/Docfx.ResultSnippets/),
-and add this to the top of each `.cs` file that needs it:
-
-```C#
-using Docfx.ResultSnippets;
-```
-
-## Why?
-
-Docfx includes code snippets in documentation, but
-not the results from executing that code.
-
-For some code examples the formatted result of executing that code is as
-important as the code itself.
-
-For example code that returns an IEnumerable, the most natural way to show the
-result would be a table. This library provides the tools to make it happen and
-more.
-
-This code,
+## First example
 
 ```csharp
-// some complex data which will convert to a table
-var data = Enumerable
-    .Range(1, 3)
-    .Select(
-        i =>
-            new
-            {
-                Name = $"Name {i}",
-                Id = i,
-                Nested = new { ChildId = i + 1 }
-            }
-    );
-var tableResult = data.ToTableResult();
+using Docfx.ResultSnippets;
+
+// some return value
+const string result = "Some result to save";
+result.SaveResults();
+
+// a part name can be added to the file name
+"Some other result".SaveResults(partName: "part2");
 ```
 
-Results in this,
+The file is written relative to the code that produced the result, as
+`./__examples__/{ClassName}.{MemberName}.{PartName}.md`.
 
-| Name   | Id | Nested        |
-|--------|----|---------------|
-| Name 1 | 1  | {"ChildId":2} |
-| Name 2 | 2  | {"ChildId":3} |
-| Name 3 | 3  | {"ChildId":4} |
+## Result types
 
-The aim of this library is to support Markdown friendly code results so
-the readers of your documentation can get a complete picture of
-what the code will produce. Think of it as serverside rendering of code results,
-like a pre executed Jupyter notebook.
+- [Table results](https://bmazzarol.github.io/docfx.result-snippets/articles/table-results.html) -
+  a collection rendered as a markdown table
+- [Class diagram results](https://bmazzarol.github.io/docfx.result-snippets/articles/class-diagram-results.html) -
+  a type drawn as a diagram
+- [Fenced results](https://bmazzarol.github.io/docfx.result-snippets/articles/fenced-results.html) -
+  any value as a fenced code block
+- [Tab results](https://bmazzarol.github.io/docfx.result-snippets/articles/tab-result.html) -
+  several results in one tabbed block
 
-For more details/information have a look the documentation, test project or
-create an issue.
+## What it does not do
+
+- It does not run the code. The test that produces the result has to run
+- It does not render anything in docfx by itself. The generated markdown is
+  pulled in with an include
+- It does not track stale results. If the code changes, the test has to run
+  again for the docs to change
+
+## See also
+
+- [Getting started](https://bmazzarol.github.io/docfx.result-snippets/articles/getting-started.html)
+- [Save results](https://bmazzarol.github.io/docfx.result-snippets/articles/save-result.html)
 
 ## Attributions
 
